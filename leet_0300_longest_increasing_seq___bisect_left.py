@@ -1,11 +1,10 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        n = len(nums)
         temp = []
-        for num in nums:
-            i = bisect.bisect_left(temp, num)
+        for n in nums:
+            i = bisect.bisect_left(temp, n)
             if i != len(temp):
-                temp[i] = num
+                temp[i] = n
             else:
-                temp.append(num)
+                temp.append(n)
         return len(temp)
