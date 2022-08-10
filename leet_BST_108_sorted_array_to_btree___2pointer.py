@@ -10,9 +10,9 @@ class Solution:
         def make_tree(nums, L, R):
             if L > R:
                 return None
-            mid = (R - L) // 2 + L
-            temp = TreeNode(nums[mid])
-            temp.left = make_tree(nums, L, mid - 1)
-            temp.right = make_tree(nums, mid + 1, R)
+            midpoint = (R - L) // 2 + L
+            temp = TreeNode(nums[midpoint])
+            temp.left = make_tree(nums, L, midpoint - 1)
+            temp.right = make_tree(nums, midpoint + 1, R)
             return temp
         return make_tree(nums, 0, len(nums) - 1)

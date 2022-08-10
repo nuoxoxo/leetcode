@@ -24,10 +24,14 @@ public:
 
     TreeNode*   make_tree(vector<int> nums, int L, int R)
     {
+        TreeNode    *node;
+        int         mid;
+
         if (L > R)
             return NULL;
-        int mid = (R - L) / 2 + L;
-        TreeNode    *node = new TreeNode(nums[mid]);
+
+        mid = (R - L) / 2 + L;
+        node = new TreeNode(nums[mid]);
         node->left = make_tree(nums, L, mid - 1);
         node->right = make_tree(nums, mid + 1, R);
         return node ;
