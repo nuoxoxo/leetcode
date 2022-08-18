@@ -13,10 +13,9 @@ class Solution:
         la = len(arr)
         count = la
         res = 0
-        for i in range(len(V)):
+        for n in V:
             if count <= la // 2:
                 return res
-            count -= V[i]
+            count -= n
             res += 1
         return res
-    
