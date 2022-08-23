@@ -16,6 +16,8 @@ public:
         deque<int>      d;
         ListNode*       p;
 
+        if (!head || !(head->next))
+            return true;
         p = head;
         while (p)
         {
