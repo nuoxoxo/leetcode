@@ -1,29 +1,19 @@
 class Solution {
 public:
-    void rotate(vector<vector<int>>& matrix)
+    void rotate(vector<vector<int>>& g)
     {
-        int n = matrix.size(), i = -1, j ;
+        int     i, j, n;
 
+        n = g.size();
+        i = -1;
         while (++i < n)
         {
-            j = i - 1;
+            j = i;
             while (++j < n)
-                swap(matrix[i][j], matrix[j][i]) ;
-            reverse(matrix[i].begin(), matrix[i].end());
-            // print(matrix) ;
+            {
+                swap(g[i][j], g[j][i]);
+            }
+            reverse(g[i].begin(), g[i].end());
         }
-    }
-
-    void print(vector<vector<int>>& m)
-    {
-        int i = -1, j;
-        while (++i < m.size())
-        {
-            j = -1;
-            while (++j < m[0].size())
-                cout << m[i][j] << ',';
-            cout << endl;
-        }
-        cout << endl;
     }
 };
