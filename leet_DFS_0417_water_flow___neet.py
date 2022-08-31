@@ -13,10 +13,10 @@ class Solution:
         c = len(h[0])
         pac = set() # two visited sets
         alt = set()
-        for i in range(r):
-            DFS(i, 0, r, c, pac, h[i][0]) # start from left col ie. [i][0]
+        for i in range(r): # leftmost & rightmost col
+            DFS(i, 0, r, c, pac, h[i][0])
             DFS(i, c - 1, r, c, alt, h[i][c - 1])
-        for i in range(c):
+        for i in range(c): # top & bottom row
             DFS(0, i, r, c, pac, h[0][i])
             DFS(r - 1, i, r, c, alt, h[r - 1][i])
         # print(pac)
