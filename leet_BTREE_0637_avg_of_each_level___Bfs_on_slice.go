@@ -11,10 +11,14 @@ func averageOfLevels(root *TreeNode) []float64 {
     res := [] float64 {}
     dq := [] *TreeNode { root } // deque is slice in go 
     for len(dq) > 0 {
-        var tmp int64 = 0
+        
+        // var tmp int64 = 0 // both ways work
+        tmp := 0
+        
         size := len(dq)
         for _, node := range dq {
-            tmp += int64(node.Val)
+            // tmp += int64(node.Val) // both work
+            tmp += node.Val
             dq = dq[1:]
             if node.Left != nil {
                 dq = append(dq, node.Left)
