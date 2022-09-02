@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+*.out
+*.swp
+*.swo
+*.swn
+*.pdf
+*.txt
+*.a
+*.o
+*.sum
+*.class
+*.tasty

@@ -11,7 +11,7 @@ class Solution:
         while dq:
             temp = 0
             size = len(dq)
-            for i in range(size):
+            for _ in range(size):
                 p = dq.pop(0)
                 temp += p.val
                 if p.left:
