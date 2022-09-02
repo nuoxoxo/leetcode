@@ -30,13 +30,13 @@ impl Solution {
             let size = dq.len(); // len()
             let mut temp = 0_f64; // 0_f64
             for _ in 0..size {
-                let node = dq.pop_back().unwrap();
+                let node = dq.pop_front().unwrap();
                 temp += node.borrow().val as f64; // borrow()
                 if let Some(L) = & node.borrow().left { // if let Some(_)
-                    dq.push_front(L.clone()); // clone
+                    dq.push_back(L.clone()); // clone
                 } 
                 if let Some(R) = & node.borrow().right {
-                    dq.push_front(R.clone());
+                    dq.push_back(R.clone());
                 }; 
                 // the above semicolon is crucial, otherwise err:
                 // "node dropped here while still borrowed"
