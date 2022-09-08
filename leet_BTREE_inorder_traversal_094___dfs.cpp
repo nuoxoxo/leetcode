@@ -13,7 +13,8 @@ public:
 
     void    traverse(vector<int>& arr, TreeNode* p)
     {
-        if (!p) return ;
+        if (!p)
+		return ;
         traverse(arr, p->left);
         arr.push_back(p->val);
         traverse(arr, p->right);
