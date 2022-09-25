@@ -1,8 +1,8 @@
 class MyCircularQueue {
 public:
     
-    vector<int> v;
-    int         limit;
+    vector<int>		v;
+    int         	limit;
     
     MyCircularQueue(int k)
     {
@@ -32,14 +32,18 @@ public:
     int Front()
     {
         if (v.size())
-            return v.front();
+	{
+		return v.front();
+	}
         return -1;
     }
     
     int Rear()
     {
         if (v.size())
-            return v.back();
+	{
+		return v.back();
+	}
         return -1;
     }
     

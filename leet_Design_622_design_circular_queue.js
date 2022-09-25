@@ -14,7 +14,8 @@ MyCircularQueue.prototype.enQueue = function(value) {
     if (this.arr.length != this.lim) {
         this.arr.push(value)
         return true
-    }   return false
+    }
+    return false
 };
 
 /**
@@ -24,7 +25,8 @@ MyCircularQueue.prototype.deQueue = function() {
     if (this.arr.length) {
         this.arr.shift()
         return true
-    }   return false
+    }
+    return false
 };
 
 /**
