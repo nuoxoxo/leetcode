@@ -1,29 +1,17 @@
-/* ******************************************** */
-/*                                              */
-/*              \\             /`/``            */
-/*              ~\o o_       0 0\               */
-/*              / \__)      (u  ); _  _         */
-/*       / \/ \/  /           \  \/ \/ \        */
-/*      /(   . . )            (         )\      */
-/*     /  \_____/              \_______/  \     */
-/*         []  []               [[] [[]    *.   */
-/*         []] []]              [[] [[]         */
-/*                                              */
-/* ************************************ nuo *** */
-
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n)
     {
-        map<int, ListNode*> mp;
-        ListNode            *p;
-        int                 i;
+        map<int, ListNode*>     mp;
+        ListNode                *p;
+        int                     i;
         
         i = 1;
         p = head;
         while (p)
         {
-            ListNode *temp;
+            ListNode        *temp;
+
             temp = p;
             mp[i] = temp;
             p = p->next;
@@ -36,7 +24,6 @@ public:
             head = head->next;
         else
             mp[i - 1]->next = mp[i + 1];
-
         return (head);
     }
 };
@@ -51,3 +38,4 @@ public:
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
