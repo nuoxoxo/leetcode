@@ -12,12 +12,12 @@ class Solution:
         R, C = len(h), len(h[0])
         pac = set() # two visited sets
         alt = set()
-        for r in range(R):
-            DFS(r, 0, R, C, pac, h[r][0]) # start from left col ie. [i][0]
-            DFS(r, C - 1, R, C, alt, h[r][C - 1])
-        for c in range(C):
-            DFS(0, c, R, C, pac, h[0][c])
-            DFS(R - 1, c, R, C, alt, h[R - 1][c])
+        for i in range(r): # leftmost & rightmost col
+            DFS(i, 0, r, c, pac, h[i][0])
+            DFS(i, c - 1, r, c, alt, h[i][c - 1])
+        for i in range(c): # top & bottom row
+            DFS(0, i, r, c, pac, h[0][i])
+            DFS(r - 1, i, r, c, alt, h[r - 1][i])
         # print(pac)
         # print(alt)
         res = []

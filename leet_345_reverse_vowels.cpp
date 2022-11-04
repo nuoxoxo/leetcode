@@ -1,46 +1,31 @@
-/* ******************************************** */
-/*                                              */
-/*              \\             /`/``            */
-/*              ~\o o_       0 0\               */
-/*              / \__)      (u  ); _  _         */
-/*       / \/ \/  /           \  \/ \/ \        */
-/*      /(   . . )            (         )\      */
-/*     /  \_____/              \_______/  \     */
-/*         []  []               [[] [[]    *.   */
-/*         []] []]              [[] [[]         */
-/*                                              */
-/* ************************************ nuo *** */
-
 class Solution {
 public:
-    string  reverseVowels(string s)
+    string reverseVowels(string s)
     {
-            vector<int> v;
-            int         size, i;
+        vector<char>    c;
+        vector<int>     idx;
+        int             i = -1;
 
-            i = -1;
-            while (++i < s.length())
+        while (++i < s.length())
+        {
+            if (isvowel(s[i]))
             {
-                if (isVowel(s[i]))
-                    v.push_back(i);
+                idx.push_back(i);
+                c.push_back(s[i]);
             }
-            size = v.size();
-            if (!size || size == 1)
-                return (s);
-            i = -1;
-            while (++i < size / 2)
-            {
-                swap(s[ v[i] ], s[ v[size - 1 - i] ]);
-            }
-            return (s);
+        }
+        reverse(c.begin(), c.end());
+        i = 0;
+        for (int n : idx)
+            s[n] = c[i++];
+        return s;
     }
-    
-    bool    isVowel(char c)
+
+    int isvowel(char c)
     {
-            if (c == 'a' || c == 'A' || c == 'e' || c == 'E' ||
-                c == 'i' || c == 'I' || c == 'o' || c == 'O' ||
-                c == 'u' || c == 'U')
-                return (true);
-            return (false);
+        if (c ^ 'a' && c ^ 'e' && c ^ 'i' && c ^ 'o' && c ^ 'u' &&
+           c ^ 'A' && c ^ 'E' && c ^ 'I' && c ^ 'O' && c ^ 'U')
+            return 0;
+        return 1;
     }
 };

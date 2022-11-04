@@ -5,7 +5,7 @@
 impl Solution {
     pub fn first_bad_version(&self, n: i32) -> i32
     {
-        let mut l: i32 = 1;
+		let mut l: i32 = 1;
         let mut r: i32 = n;
 
         while (l <= r)

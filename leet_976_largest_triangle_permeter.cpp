@@ -2,11 +2,7 @@ class Solution {
 public:
     int largestPerimeter(vector<int>& nums)
     {
-        int		res;
-	int		i;
-
-	res = 0;
-	i = -1;
+        int i = -1, res = 0;
         sort(nums.begin(), nums.end(), greater<int>());
         while (++i < nums.size() - 2)
         {
