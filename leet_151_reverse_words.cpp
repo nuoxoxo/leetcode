@@ -2,13 +2,16 @@ class Solution {
 public:
     string reverseWords(string s)
     {
-        string          res, tmp;
-        stringstream    ss(s);
-        vector<string>  arr;
+        vector<string>      arr;
+        stringstream        ss(s);
+        string              res, tmp;
+        int                 i, n;
+        
         while (ss >> tmp)
             arr.push_back(tmp);
         reverse(arr.begin(), arr.end());
-        int i = -1, n = arr.size();
+        n = arr.size();
+        i = -1;
         while (++i < n)
         {
             res += arr[i];
