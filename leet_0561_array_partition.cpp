@@ -9,7 +9,7 @@ public:
         res = 0;
         while (i < (int) nums.size())
         {
-            res += min(nums[i], nums[i + 1]);
+            res += nums[i];
             i += 2;
         }
         return res ;
