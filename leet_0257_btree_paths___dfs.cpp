@@ -26,12 +26,10 @@ public:
     {
         if ( !(node->left) && !(node->right))
             v.push_back(s + std::to_string(node->val));
-        else
-        {
-            if (node->left)
-                DFS(v, node->left, s + std::to_string(node->val) + "->");
-            if (node->right)
-                DFS(v, node->right, s + std::to_string(node->val) + "->");
-        }
+        s += std::to_string(node->val) + "->";
+        if (node->left)
+            DFS(v, node->left, s);
+        if (node->right)
+            DFS(v, node->right, s);
     }
 };
