@@ -4,17 +4,15 @@ public:
     {
         int     C = (int) maze[0].size();
         int     R = (int) maze.size();
-        int     x_gate = entrance[0];
-        int     y_gate = entrance[1];
-        int     n, i, j, x, y, x_temp, y_temp;
+        int     i, n, x, y, x_temp, y_temp;
         // int     res = 0;
         int     res = 1;
 
         vector<vector<int>>     dir = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
         deque<pair<int, int>>   D;
 
-        D.push_back({x_gate, y_gate});
-        maze[x_gate][y_gate] = '+';
+        D.push_back( {entrance[0], entrance[1]} );
+        maze[entrance[0]][entrance[1]] = '+';
         while (!D.empty())
         {
             n = (int) D.size();
