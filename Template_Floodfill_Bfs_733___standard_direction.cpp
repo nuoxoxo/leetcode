@@ -1,34 +1,35 @@
 class Solution {
 public:
-    vector<vector<int>> floodFill(vector<vector<int>>& img, int x, int y, int nc)
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int x, int y, int color)
     {
-        if (img[x][y] == nc)
-            return img;
+        if (image[x][y] == color)
+            return (image);
 
-        int     oc = img[x][y];
-        int     c = img[0].size();
-        int     r = img.size();
-        int     i, j;
+        int     C = image[0].size();
+        int     R = image.size();
+        int     old_color = image[x][y];
+        int     temp_x, temp_y, res;
 
-        vector<vector<int>>     dir = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
+        vector<vector<int>>     dir = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+        deque<vector<int>>      dq = {{x, y}};  
 
-        deque<pair<int, int>>   dq;
-        dq.push_back({x, y});
-
-        while (!empty(dq))
+        res = 0;
+        while ( !dq.empty())
         {
-            i = dq.front().first;
-            j = dq.front().second;
-            img[i][j] = nc;
+            temp_x = dq.front()[0];
+            temp_y = dq.front()[1];
+            image[temp_x][temp_y] = color;
             dq.pop_front();
-            for (vector<int> d: dir)
+            for (vector<int> d : dir)
             {
-                x = i + d[0];
-                y = j + d[1];
-                if (x < r && x > -1 && y < c && y > -1 && img[x][y] == oc)
+                x = temp_x + d[0];
+                y = temp_y + d[1];
+                if (x < R && x > -1 && y < C && y > -1 && image[x][y] == old_color)
+                {
                     dq.push_back({x, y});
+                }
             }
         }
-        return img;
+        return (image);
     }
 };
