@@ -1,16 +1,3 @@
-/* ******************************************** */
-/*                                              */
-/*              \\             /`/``            */
-/*              ~\o o_       0 0\               */
-/*              / \__)      (u  ); _  _         */
-/*       / \/ \/  /           \  \/ \/ \        */
-/*      /(   . . )            (         )\      */
-/*     /  \_____/              \_______/  \     */
-/*         []  []               [[] [[]    *.   */
-/*         []] []]              [[] [[]         */
-/*                                              */
-/* ************************************ nuo *** */
-
 class   Solution
 {
     public:
@@ -19,12 +6,14 @@ class   Solution
     {
             int     rows, cols;
 
-            if (!board.size())  return (false);
+            if (!board.size())
+		    return (false);
             rows = (int) board.size();
             cols = (int) board[0].size();
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
-                    if (dfs(board, word, 0, i, j))  return (true);
+                    if (dfs(board, word, 0, i, j))
+			    return (true);
             return (false);
     }
 
@@ -34,7 +23,8 @@ class   Solution
             bool    found;
             char    c;
 
-            if (!board.size())  return (false);
+            if (!board.size())
+		    return (false);
             rows = (int) board.size();
             cols = (int) board[0].size();
             if (x < 0 || x == rows || y < 0 || y == cols || word[i] != board[x][y])
