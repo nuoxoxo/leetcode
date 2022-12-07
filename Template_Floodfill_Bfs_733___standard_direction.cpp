@@ -18,8 +18,9 @@ public:
         {
             temp_x = dq.front()[0];
             temp_y = dq.front()[1];
-            image[temp_x][temp_y] = color;
             dq.pop_front();
+
+	    image[temp_x][temp_y] = color;
             for (vector<int> d : dir)
             {
                 x = temp_x + d[0];
