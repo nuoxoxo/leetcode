@@ -2,14 +2,18 @@ class Solution {
 public:
     int tribonacci(int n)
     {
-        if (!n)     return (0);
-        if (n < 3)  return (1);
-        int         trib[n + 1];
-        trib[0] = 0;
-        trib[1] = 1;
-        trib[2] = 1;
-        for (int i = 3; i < n + 1; i++) trib[i] = trib[i - 1] + trib[i - 2] + trib[i - 3];
+        if (n < 2)
+            return n;
+ 
+        vector<int>     t(n + 1, 0);
+        int             i = 2;
 
-        return (trib[n]);
+        t[1] = 1;
+        t[2] = 1;
+        while (++i < n + 1)
+        {
+            t[i] = t[i - 1] + t[i - 2] + t[i - 3];
+        }
+        return t[n];
     }
 };
