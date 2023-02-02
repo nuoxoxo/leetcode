@@ -4,26 +4,26 @@ public:
     {
         map<char, int>  E ;
         int             i, j;
-        int             oz = order.size();
-        int             wz = words.size();
 
         i = -1;
-        while (++i < oz)    E[order[i]] = i ;
+        while (++i < order.size())
+            E[order[i]] = i;
         i = -1;
-        while (++i < wz - 1)
+        while (++i < words.size() - 1)
         {
-            string  L = words[i], R = words[i + 1];
-            int     Lz = L.length();
-            int     Rz = R.length();
+            string  s1 = words[i];
+            string  s2 = words[i + 1];
+            int     len_2 = s2.length();
     
             j = -1;
-            while (++j < L.length())
+            while (++j < s1.length())
             {
-                if (j == Rz)
+                if (j == len_2)
                     return false ;
-                if (L[j] != R[j])
+                if (s1[j] != s2[j])
                 {
-                    if (E[ L[j] ] > E[ R[j] ])  return false ;
+                    if (E[s1[j]] > E[s2[j]])
+                        return false ;
                     break ;
                 }
             }
