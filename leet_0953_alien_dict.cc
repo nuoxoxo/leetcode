@@ -13,12 +13,11 @@ public:
         {
             string  s1 = words[i];
             string  s2 = words[i + 1];
-            int     len_2 = s2.length();
     
             j = -1;
             while (++j < s1.length())
             {
-                if (j == len_2)
+                if (j == s2.length())
                     return false ;
                 if (s1[j] != s2[j])
                 {
