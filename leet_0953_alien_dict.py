@@ -1,16 +1,18 @@
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
-        E = { c : i for i, c in enumerate(order) }
-        size = len(words) - 1
-        for i in range(size):
-            L, R = words[i], words[i + 1]
-            Lz = len(L)
-            Rz = len(R)
-            for j in range(len(L)):
-                if j == Rz:
+        E = {}
+        for i in range(len(order)):
+            E[order[i]] = i
+        for i in range(len(words) - 1):
+            s1, s2 = words[i], words[i + 1]
+            size_1 = len(s1)
+            size_2 = len(s2)
+            for j in range(size_1):
+                if j == size_2:
                     return False
-                if L[j] != R[j]:
-                    if E[ L[j] ] > E[ R[j] ]:
+                if s1[j] != s2[j]:
+                    if E[s1[j]] > E[s2[j]]:
                         return False
                     break
-        return True 
+        return True
+
