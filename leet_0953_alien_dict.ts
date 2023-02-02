@@ -1,10 +1,4 @@
-/**
- * @param {string[]} words
- * @param {string} order
- * @return {boolean}
- */
-
-var isAlienSorted = function(words, order) {
+function isAlienSorted(words: string[], order: string): boolean {
     let dict = new Object()
     let i = -1
 
