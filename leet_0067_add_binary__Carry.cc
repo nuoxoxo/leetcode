@@ -4,8 +4,8 @@ public:
     {
         int     lena = a.length();
         int     lenb = b.length();
-        int     diff = abs(lena-lenb);
-        int     len = max(lena,lenb);
+        int     diff = abs(lena - lenb);
+        int     len = max(lena , lenb);
         int     carry, i ;
         string  ones = "";
         string  E = "";
