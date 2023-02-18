@@ -4,22 +4,16 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-
 class Solution:
-    def invertTree(self, node: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not node:
-            return node
-        q = deque()
-        q.append(node)
-        while q:
-            temp = q.popleft()
-            temp.left, temp.right = temp.right, temp.left
-            if temp.left:
-                q.append(temp.left)
-            if temp.right:
-                q.append(temp.right)
-        return node
-        
-
-
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return root
+        D = deque([root])
+        while D:
+            node = D.popleft()
+            node.left, node.right = node.right, node.left
+            if node.left:
+                D.append(node.left)
+            if node.right:
+                D.append(node.right)
+        return root
