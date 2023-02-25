@@ -9,8 +9,8 @@ public:
         int i = 0;
         while (++i < prices.size())
         {
-            lowest = lowest > prices[i] ? lowest : prices[i];
-            margin = margin < prices[i] - lowest ? margin : prices[i] - lowest;
+            lowest = lowest < prices[i] ? lowest : prices[i];
+            margin = margin < prices[i] - lowest ? prices[i] - lowest : margin;
         }
         return margin;
     }
