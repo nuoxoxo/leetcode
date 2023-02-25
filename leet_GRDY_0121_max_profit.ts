@@ -1,9 +1,3 @@
-/**
- * @param {number[]} prices
- * @return {number}
- */
-
-var maxProfit = function(prices) {
     if (prices.length < 2)
         return 0
     let lowest = prices[0]
@@ -14,4 +8,3 @@ var maxProfit = function(prices) {
         res = Math.max(res, prices[i] - lowest)
     }
     return res
-};
