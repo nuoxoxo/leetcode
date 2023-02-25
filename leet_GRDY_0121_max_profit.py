@@ -1,23 +1,10 @@
-#* ******************************************** *#
-#*                                              *#
-#*              \\             /`/``            *#
-#*              ~\o o_       0 0\               *#
-#*              / \__)      (u  ); _  _         *#
-#*       / \/ \/  /           \  \/ \/ \        *#
-#*      /(   . . )            (         )\      *#
-#*     /  \_____/              \_______/  \     *#
-#*         []  []               [[] [[]    *.   *#
-#*         []] []]              [[] [[]         *#
-#*                                              *#
-#* ************************************ nuo *** *#
-
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        if len(prices) == 1:
+        if len(prices) < 2:
             return 0
-        margin = 0
         lowest = prices[0]
-        for p in prices:
-            lowest = min(p, lowest)
-            margin = max(p - lowest, margin)
+        margin = 0
+        for i in range(len(prices)):
+            lowest = min(lowest, prices[i])
+            margin = max(margin, prices[i] - lowest)
         return margin
