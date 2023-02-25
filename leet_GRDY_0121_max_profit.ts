@@ -1,3 +1,4 @@
+function maxProfit(prices: number[]): number {
     if (prices.length < 2)
         return 0
     let lowest = prices[0]
@@ -8,3 +9,4 @@
         res = Math.max(res, prices[i] - lowest)
     }
     return res
+};
