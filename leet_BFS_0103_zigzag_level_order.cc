@@ -45,11 +45,3 @@ public:
         return r;
     }
 };
-
-
-
-
-
-
-
-
