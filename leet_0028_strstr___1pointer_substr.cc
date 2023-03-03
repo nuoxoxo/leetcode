@@ -2,18 +2,22 @@ class Solution {
 public:
     int strStr(string haystack, string needle)
     {
-        int hays = haystack.length();
-        int nees = needle.length();
+        int len_hays = haystack.length();
+        int len_need = needle.length();
         int i;
+        int end;
 
-        if (nees == 0)
-            return 0 ;
-        if (hays == 0 || nees > hays)
-            return -1 ;
+        if (!len_need)
+            return 0;
+        if (!len_hays || len_hays < len_need)
+            return -1;
         i = -1;
-        while (++i < hays - nees + 1)
-            if (haystack.substr(i, nees) == needle)
+        end = len_hays - len_need + 1;
+        while (++i < end)
+        {
+            if (haystack.substr(i, len_need) == needle)
                 return i;
+        }
         return -1;
     }
 };
