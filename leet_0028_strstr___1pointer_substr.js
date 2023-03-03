@@ -5,16 +5,18 @@
  */
 
 var strStr = function(haystack, needle) {
-    let sn = needle.length
-    if (sn == 0)
-        return sn
-    let sh = haystack.length
+    let len_hays = haystack.length
+    let len_need = needle.length
+    if (len_need == 0)
+        return 0
+    if ((len_hays == 0) || len_hays < len_need)
+        return -1
     let i = -1
-    if ((sh == 0) || sn > sh)
-        return i
-    while (++i < sh - sn + 1) {
-        if (haystack.substr(i, sn) == needle)
+    let end = len_hays - len_need + 1
+    while (++i < end) {
+        if (haystack.substr(i, len_need) == needle)
             return i
     }
     return -1
 };
+
