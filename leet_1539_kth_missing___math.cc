@@ -11,7 +11,7 @@ public:
             int diff = arr[i] - arr[i - 1] - 1;
             if (!diff)
                 continue;
-            if (k - diff < 1)
+            if (k < 1 + diff)
                 break;
             k -= diff;
         }
