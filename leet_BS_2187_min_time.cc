@@ -7,7 +7,7 @@ public:
         ull l = 0;
         while (l < r)
         {
-            ull mid = (r + l) / 2;
+            ull mid = l + (r - l) / 2;
 
             if (ok(mid, time, totalTrips))
                 r = mid;
@@ -24,4 +24,4 @@ public:
             trips += n / t;
         return (trips >= total);
     }
-};
+};;
