@@ -1,56 +1,30 @@
-/* ******************************************** */
-/*                                              */
-/*              \\             /`/``            */
-/*              ~\o o_       0 0\               */
-/*              / \__)      (u  ); _  _         */
-/*       / \/ \/  /           \  \/ \/ \        */
-/*      /(   . . )            (         )\      */
-/*     /  \_____/              \_______/  \     */
-/*         []  []               [[] [[]    *.   */
-/*         []] []]              [[] [[]         */
-/*                                              */
-/* ************************************ nuo *** */
-
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h)
     {
-        int L, R, size, res;
-
         sort(piles.begin(), piles.end());
-        size = piles.size();
-        res = piles[size - 1];
-        R = res;
-        L = 1;
 
-        while (L <= R)
+        int M = piles[piles.size() - 1];
+        int res = M;
+        int R = M;
+        int L = 1;
+        while (L < R)
         {
-            int mid, i, t;
+            int mid = (R - L) / 2 + L;
+            long long   hours = 0;
 
-            t = 0;
-            i = -1;
-            mid = (L + R) / 2;
-            while (++i < size)
+            for (int p: piles)           
             {
-                int n = piles[i];
-
-                // if (n != mid)   t += n / mid; // initial wrong solve 
-                if (!(n % mid)) t += n / mid;
-                else            t += n / mid + 1; // crucial fix
+                hours += (p + mid - 1) / mid; // crucial line
             }
-            // cout << L << ' ' << R << ' ' << t << ' ' << res << endl;
-            if (t > h)
-            {
+            if (hours > h)
                 L = mid + 1;
-            }
             else
             {
-                res = res < mid ? res : mid ;
-                R = mid - 1;
+                R = mid;
+                res = min(res, mid);
             }
         }
         return res ;
     }
 };
-
-
