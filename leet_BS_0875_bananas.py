@@ -1,16 +1,18 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        res = max(piles)
-        R = res
+        piles.sort()
+        M = piles[-1]
         L = 1
-        while L < R + 1:
-            mid = (L + R) // 2
-            t = 0
+        R = M
+        res = M
+        while L < R:
+            hours = 0
+            mid = (R - L) // 2 + L
             for p in piles:
-                t += ceil(p / mid)
-            if t > h:
+                hours += ceil(p / mid)
+            if hours > h:
                 L = mid + 1
             else:
-                R = mid - 1
                 res = min(res, mid)
+                R = mid
         return res
