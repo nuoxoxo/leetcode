@@ -10,7 +10,6 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-
 var detectCycle = function(head) {
     if (!head)
         return null
@@ -19,7 +18,7 @@ var detectCycle = function(head) {
     while (fast && fast.next) {
         fast = fast.next.next
         slow = slow.next
-        if (fast == slow) {
+        if (slow == fast) {
             slow = head
             while (slow != fast) {
                 slow = slow.next

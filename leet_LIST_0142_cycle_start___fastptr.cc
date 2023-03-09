@@ -1,12 +1,22 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head)
     {
+        if (!head)
+            return 0;
+
         ListNode    *fast, *slow;
 
-        if (!head)
-            return NULL ;
-        fast = slow = head;
+        fast = head;
+        slow = head;
         while (fast && fast->next)
         {
             fast = fast->next->next;
@@ -14,14 +24,14 @@ public:
             if (fast == slow)
             {
                 slow = head;
-                while (fast != slow)
+                while (slow != fast)
                 {
-                    fast = fast->next;
                     slow = slow->next;
+                    fast = fast->next;
                 }
                 return fast;
             }
         }
-        return NULL ;
+        return 0;
     }
 };
