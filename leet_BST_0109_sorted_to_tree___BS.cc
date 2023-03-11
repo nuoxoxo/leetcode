@@ -1,33 +1,3 @@
-class Solution {
-public:
-    TreeNode* sortedListToBST(ListNode* head)
-    {
-        vector<int> v;
-        ListNode*   p;
-        int         n;
-
-        p = head;
-        while (p)
-        {
-            v.push_back(p->val);
-            p = p->next;
-        }
-        n = (int) v.size();
-        return make_tree(v, 0, n - 1); 
-    }
-    
-    TreeNode*   make_tree(vector<int> v, int L, int R)
-    {
-        if (L > R)
-            return NULL;
-        int mid = (R - L) / 2 + L;
-        TreeNode    *node = new TreeNode(v[mid]);
-        node->left = make_tree(v, L, mid - 1);
-        node->right = make_tree(v, mid + 1, R);
-        return node ;
-    }
-};
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -49,4 +19,33 @@ public:
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+class Solution {
+public:
+    TreeNode* sortedListToBST(ListNode* head)
+    {
+        vector<int> v;
+        ListNode    *p;
+
+        p = head;
+        while (p)
+            v.push_back(p->val), p = p->next;
+        return make_tree(v, 0, (int) v.size() - 1);
+    }
+
+    TreeNode    *make_tree(vector<int>& v, int L, int R)
+    {
+        TreeNode *node;
+        int mid;
+    
+        if (L > R)
+            return 0;
+        mid = (R - L) / 2 + L;
+        node = new TreeNode(v[mid]);
+        node->left = make_tree(v, L, mid - 1);
+        node->right = make_tree(v, mid + 1, R);
+        return node;
+
+    }
+};
 
