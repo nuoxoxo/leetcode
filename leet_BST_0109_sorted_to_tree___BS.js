@@ -1,28 +1,3 @@
-
-var sortedListToBST = function(head) {
-
-    let a = []
-    let p = head
-    while (p) {
-        a.push(p.val)
-        p = p.next
-    }
-
-    return to_tree(a, 0, a.length - 1)
-
-    function to_tree(a, L, R) {
-        if (L <= R) {
-            let mid = Math.floor((R - L) / 2) + L
-            let temp = new TreeNode(a[mid])
-            temp.left = to_tree(a, L, mid - 1)
-            temp.right = to_tree(a, mid + 1, R)
-            return temp
-        }
-        return null
-    }
-};
-
-
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -42,3 +17,23 @@ var sortedListToBST = function(head) {
  * @param {ListNode} head
  * @return {TreeNode}
  */
+
+var sortedListToBST = function(head) {
+    let a = []
+    let p = head
+    while (p) {
+        a.push(p.val)
+        p = p.next
+    }
+    return make_tree(a, 0, a.length - 1)
+};
+
+var make_tree = function (a, L, R) {
+    if (L > R)
+        return null
+    let mid = Math.floor((R - L) / 2) + L
+    let node = new TreeNode(a[mid])
+    node.left = make_tree(a, L, mid - 1)
+    node.right = make_tree(a, mid + 1, R)
+    return node
+}
