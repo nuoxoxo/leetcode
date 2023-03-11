@@ -1,14 +1,15 @@
 class Solution:
-    def strStr(self, hay: str, nee: str) -> int:
-        h = len(hay)
-        n = len(nee)
-        if n is 0:
+    def strStr(self, haystack: str, needle: str) -> int:
+        L, R = len(haystack), len(needle)
+        if R is 0:
             return 0
-        if h is 0 or n > h:
+        if L is 0 or L < R:
             return -1
         i = 0
-        while i < h - n + 1:
-            if hay[i : i + n] == nee:
+        while i < L - R + 1:
+            if haystack[i : i + R] == needle:
                 return i
             i += 1
         return -1
+
+
