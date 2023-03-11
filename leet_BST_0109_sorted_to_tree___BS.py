@@ -1,23 +1,3 @@
-
-class Solution:
-    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
-        def make_tree(lst, L, R):
-            if L <= R:
-                mid = (R - L) // 2 + L
-                node = TreeNode(lst[mid])
-                node.left = make_tree(lst, L, mid - 1)
-                node.right = make_tree(lst, mid + 1, R)
-                return node
-            return None
-        p = head
-        lst = []
-        while p:
-            lst.append(p.val)
-            p = p.next
-        return make_tree(lst, 0, len(lst) - 1)
-            
-
-
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -29,3 +9,21 @@ class Solution:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+class Solution:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        a = []
+        p = head
+        while p:
+            a.append(p.val)
+            p = p.next
+        def make_tree(L: int, R: int):
+            if L > R:
+                return None
+            mid = (L + R) // 2
+            node = ListNode(a[mid])
+            node.left = make_tree(L, mid - 1)
+            node.right = make_tree(mid + 1, R)
+            return node
+        return make_tree(0, len(a) - 1)
+
