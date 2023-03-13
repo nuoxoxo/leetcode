@@ -12,19 +12,19 @@
 
 class Solution {
 public:
-    bool isSymmetric(TreeNode* node)
+    bool isSymmetric(TreeNode* root)
     {
-        if (!node)
+        if (!root)
             return true;
-        return isSame(node->left, node->right);
+        return helper(root->left, root->right);
     }
 
-    bool    isSame(TreeNode* L, TreeNode* R)
+    bool helper(TreeNode *L, TreeNode *R)
     {
         if (!L && !R)
             return true;
-        if (!L || !R || L->val != R->val)
+        if (!L || !R)
             return false;
-        return isSame(L->left, R->right) && isSame(L->right, R->left);
+        return (L->val == R->val && helper(L->left, R->right) && helper(L->right, R->left));
     }
 };
