@@ -4,16 +4,16 @@ public:
     {
        int i = -1;
        int count = 0;
-       unordered_map<char,bool> mp;
+       set<char> S;
 
        while (++i < s.length())
        {
-           if (mp.find(s[i]) != mp.end())
+           if (S.find(s[i]) != S.end())
            {
-                count++;
-                mp.clear();
-           }  
-           mp[s[i]]=true; 	  
+               ++count;
+               S.clear();
+           }
+           S.insert(s[i]);
        }
        return count + 1;
     }
