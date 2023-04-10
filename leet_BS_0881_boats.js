@@ -10,11 +10,11 @@ var numRescueBoats = function(people, limit) {
     let boats = 0
     people.sort((a, b) => a - b)
     while (i <= j) {
-        ++ boats
+        ++boats
         if (people[i] + people[j] <= limit) {
-            ++ i
+            ++i
         }
-        -- j
+        --j
     }
     return boats
 };
