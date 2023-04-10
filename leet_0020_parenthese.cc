@@ -1,29 +1,38 @@
 class Solution {
 public:
-    bool isValid(string s)
-    {
-        map<char, char>         rule;
-        stack<char>             punc;
-        int                     i;
+    bool isValid(string s) {
+        int len = s.length();
+        if (!len)
+            return true;
+        if (len % 2)
+            return false;
 
-        if (!s.length())        return (true);
-        if (s.length() == 1)    return (false);    
-        rule['}'] = '{';
-        rule[')'] = '(';
-        rule[']'] = '[';
-        i = -1;
-        while (++i < s.length())
+        // create map/dict: 1st way
+        unordered_map<char, char>   M{ 
+            {')', '('}, {'}', '{'}, {']', '['} };
+
+        // create map/dict: 2nd way
+        // unordered_map<char, char>   M
+        // M['}'] = '{';
+        // M[')'] = '(';
+        // M[']'] = '[';
+
+        deque<char> D;
+        for (char c: s)
         {
-            if (punc.size() > s.length() - 1)   return (false);
-            if (rule.find(s[i]) == rule.end())  punc.push(s[i]);
-            else
+            if (M.find(c) == M.end()) // case: left
+                D.push_back(c);
+            else // case: right
             {
-                if (punc.size() == 0)           return (false);
-                if (punc.top() != rule[s[i]])   return (false);
-                punc.pop();
+                if ( !D.size() || D.back() != M[c])
+                    return false;
+                D.pop_back();
             }
         }
-        if (punc.size())    return (false);
-        return (true);
+        if (D.size())
+            return false;
+        return true;
+        
+        
     }
 };
