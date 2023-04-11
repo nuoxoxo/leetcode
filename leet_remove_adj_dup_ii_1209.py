@@ -1,18 +1,15 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
-        q = []
+        if len(s) < k:
+            return s
+        E = []
         for c in s:
-            if len(q) != 0 and c == q[-1][0]:
-                if q[-1][1] == k - 1:
-                    q.pop()
-                else:
-                    q[-1][1] += 1
+            # print(E)
+            if E and E[-1][0] == c:
+                tup = E.pop()
+                E.append((tup[0], tup[1] + 1))
             else:
-                q.append([c, 1])
-        res = ''
-        while len(q) != 0:
-            while q[0][1] > 0:
-                res += q[0][0]
-                q[0][1] -= 1
-            q.pop(0)
-        return res
+                E.append((c, 1))
+            if E[-1][1] == k:
+                E.pop()
+        return ''.join(e[0] * e[1] for e in E)
