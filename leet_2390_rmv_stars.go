@@ -5,7 +5,7 @@ func removeStars(s string) string {
     for _, c := range s {
         if c == '*' && len(a) != 0 {
             a = a[:len(a) - 1]
-        } else if c != '*' {
+        } else {
             a = append(a, byte(c))
         }
     }
