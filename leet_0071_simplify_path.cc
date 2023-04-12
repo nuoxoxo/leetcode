@@ -1,30 +1,32 @@
 class Solution {
 public:
-    string simplifyPath(string path)
-    {
-        deque<string>   E ;
-        stringstream    ss(path);
-        string          tmp, res = "/";
-
-        while (getline(ss, tmp, '/'))
+    string simplifyPath(string path) {
+        deque<string>   D;
+        string  res, word;
+        int     i = -1;
+        while (++i < (int) path.size())
         {
-            if (tmp == "" || tmp == ".")
-                continue;
-            if (tmp == "..")
+            if (path[i] == '/')
+                continue ;
+            word = "";
+            while (i < (int) path.size() && path[i] != '/')
+                word += path[i++];
+            if (word == ".")
+                continue ;
+            if (word == "..")
             {
-                if (E.size())
-                    E.pop_back();
-                continue;
+                if (!D.empty())
+                    D.pop_back();
             }
-            E.push_back(tmp);
+            else
+                D.push_back(word);
         }
-        while (E.size())
+        while ( !D.empty())
         {
-            res += E[0];
-            E.pop_front();
-            if (E.size())
-                res += '/' ;
+            string tmp = "/" + D.back();;
+            res = tmp + res;
+            D.pop_back();
         }
-        return res;
+        return res == "" ? "/" : res;
     }
 };
