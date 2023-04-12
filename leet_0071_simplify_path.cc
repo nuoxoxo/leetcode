@@ -13,12 +13,9 @@ public:
                 word += path[i++];
             if (word == ".")
                 continue ;
-            if (word == "..")
-            {
-                if (!D.empty())
-                    D.pop_back();
-            }
-            else
+            if (word == ".." && !D.empty())
+                D.pop_back();
+            else if (word != "..")
                 D.push_back(word);
         }
         while ( !D.empty())
