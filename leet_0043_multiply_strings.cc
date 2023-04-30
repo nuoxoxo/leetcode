@@ -3,34 +3,35 @@ public:
     string multiply(string num1, string num2)
     {
         if (num1 == "0" || num2 == "0")
-            return ("0");
+            return "0";
 
-        vector<int> product(num1.size() + num2.size(), 0);
-        int         len1 = num1.length();
-        int         len2 = num2.length();
-        int         L, R, i, j, pairing;
-        string      res;
-        
-        i = len1;
+        int len1 = num1.length();
+        int len2 = num2.length();
+        int i = len1;
+        vector<int> p(len1 + len2, 0);
+        string  res;
+
         while (--i > -1)
         {
-            j = len2;
+            int j = len2;
             while (--j > -1)
             {
-                L = i + j;
-                R = i + j + 1;
-                pairing = (num1[i] - 48) * (num2[j] - 48) + product[R];
-                product[L] = pairing / 10 + product[L];
-                product[R] = pairing % 10;
+                int L = i + j;
+                int R = i + j + 1;
+                int tmp = (num1[i] - '0') * (num2[j] - '0') + p[R];
+                p[L] = tmp / 10 + p[L];
+                p[R] = tmp % 10;
             }
         }
         i = 0;
-        while (product[i] == 0)
+        while (p[i] == 0)
             i++;
         while (i < len1 + len2)
-            res += to_string(product[i++]);
-
-        return (res);
+        {
+            res += to_string(p[i]);
+            ++i;
+        }
+        return res;
     }
 };
 
