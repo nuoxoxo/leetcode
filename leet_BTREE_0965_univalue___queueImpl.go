@@ -8,9 +8,9 @@
  */
 
 func isUnivalTree(root *TreeNode) bool {
-    x := root.Val
-    var d Queue
+    d := make(Queue, 0)
     d.Push(root)
+    x := root.Val
     for !d.Empty() {
         node := d.Shift()
         if node.Val != x {
