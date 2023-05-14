@@ -8,6 +8,8 @@ function curry(fn: Function): Function {
         return function (...added) {
             return curried(...args, ...added)
         }
+        // using arrow be like
+        // return (...added) => curried(...args, ...added)
     };
 
     // recursive with caching
