@@ -4,13 +4,13 @@ public:
     {
         int         n = (int) grid.size();
 
-        if (n < 2)
-            return 1;
         if (grid[0][0] || grid[n - 1][n - 1])
             return -1;
+        if (n < 2)
+            return 1;
 
-        vector<int>             dx = {-1,-1,-1, 0,0, 1,1,1};
-        vector<int>             dy = {-1, 0, 1,-1,1,-1,0,1};
+        vector<int> dx = {-1,-1,-1, 0,0, 1,1,1};
+        vector<int> dy = {-1, 0, 1,-1,1,-1,0,1};
         deque<pair<int, int>>   dq;
         int                     res;
 
@@ -46,6 +46,7 @@ public:
                     }
                 }
             }
+            // ++res;
         }
         return -1 ;
     }
