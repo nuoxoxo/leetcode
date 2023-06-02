@@ -1,12 +1,10 @@
 async function sleep(millis: number): Promise<void> {
-    let promise = new Promise<void>( (resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         setTimeout(() => {
-            resolve()
-        }, millis)
+            resolve();
+        }, millis);
     })
-    return promise
 }
-
 
 /** 
  * let t = Date.now()
