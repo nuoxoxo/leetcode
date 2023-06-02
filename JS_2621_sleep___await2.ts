@@ -1,9 +1,10 @@
 async function sleep(millis: number): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-        setTimeout(() => {
-            resolve();
-        }, millis);
-    })
+    let res = new Promise<void>(
+        (resolve) => {
+            setTimeout(() => resolve(), millis);
+        }
+    );
+    await res
 }
 
 /** 
