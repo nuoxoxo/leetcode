@@ -9,7 +9,8 @@ function nextGreatestLetter(letters: string[], target: string): string {
         else
             R = mid
     }
-    if (R == n)
-        return letters[0]
-    return letters[R]
+    // if (R == n)
+    //     return letters[0]
+    // return letters[R]
+	return letters[R % n]
 };
