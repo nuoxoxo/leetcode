@@ -4,17 +4,18 @@
  * @return {character}
  */
 var nextGreatestLetter = function(letters, target) {
-    n = letters.length
-    i = 0
-    j = n
-    while (i < j) {
-        mid = Math.floor((j - i) / 2) + i
+    let n = letters.length
+    let L = 0
+    let R = n
+    while (L < R) {
+        let mid = Math.floor((R - L) / 2) + L
         if (letters[mid].charCodeAt(0) <= target.charCodeAt(0))
-            i = mid + 1
+            L = mid + 1
         else
-            j = mid
+            R = mid
     }
-    if (n == j)
-        return letters[0]
-    return letters[j]
+    // if (R == n)
+    //     return letters[0]
+    // return letters[R]
+		return letters[R % n]
 };
