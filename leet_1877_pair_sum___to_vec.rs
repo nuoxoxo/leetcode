@@ -1,6 +1,7 @@
 impl Solution {
     pub fn min_pair_sum(nums: Vec<i32>) -> i32 {
         let mut n = nums.to_vec();
+        // let mut n = nums.to_owned();
 
         n.sort();
         let len = n.len();
