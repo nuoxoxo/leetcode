@@ -32,8 +32,7 @@ public:
         sort(n.begin(), n.end());
         while (++i < len - 1)
         {
-            int tmp = n[i] - n[i + 1];
-            tmp < 0 ? tmp = -tmp : tmp = tmp;
+            int tmp = n[i + 1] - n[i];
             res > tmp ? res = tmp : res = res;
         }
         return res;
