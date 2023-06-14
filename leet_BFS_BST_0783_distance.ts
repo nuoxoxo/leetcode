@@ -12,22 +12,23 @@
  * }
  */
 
-function getMinimumDifference(root: TreeNode | null): number {
-    let d = [root]
+function minDiffInBST(root: TreeNode | null): number {
+    let dq = [root]
     let n = []
-    while (d.length) {
-        let node = d.shift()
+    while (dq.length) {
+        let node = dq.shift()
         n.push(node.val)
         if (node.left) {
-            d.push(node.left)
+            dq.push(node.left)
         }
         if (node.right) {
-            d.push(node.right)
+            dq.push(node.right)
         }
     }
-    n.sort((a, b) => {return b - a})
+
     let i = -1
     let res = Number.MAX_SAFE_INTEGER
+    n.sort((a, b) => {return b - a})
     while (++i < n.length - 1) {
         let diff = n[i] - n[i + 1]
         res = res > diff ? diff : res 
