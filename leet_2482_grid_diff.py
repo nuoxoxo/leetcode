@@ -9,7 +9,7 @@ class Solution:
         for r in grid:
             r1.append(r.count(1))
             r0.append(r.count(0))
-            for i in range(len(r)):
+            for i in range(cols):
                 if r[i] == 1:
                     c1[i] += 1
                 else:
