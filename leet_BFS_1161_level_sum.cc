@@ -17,9 +17,9 @@ public:
             return 0;
         deque<TreeNode *>   dq{root};
         int record = -2147483648;
-        int curr = 0; // current level sum
-        int res = 0; // min level no.
+        int curr; // current level sum
         int level = 0;
+        int res = 0; // min level no.
 
         int len, i;
         while (!dq.empty())
