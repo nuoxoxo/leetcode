@@ -11,7 +11,6 @@ func reverseOddLevels(root *TreeNode) *TreeNode {
         return nil
     }
 
-
     dq := []*TreeNode{root}
     level := 0
     var line []int
