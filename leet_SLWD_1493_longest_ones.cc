@@ -12,7 +12,7 @@ public:
             if (tt < 0)
             {
                 if (n[L] == 0)
-                    tt = 0;
+                    ++tt;
                 ++L;
             }
         }
