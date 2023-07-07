@@ -2,10 +2,7 @@ class Solution:
     def maxConsecutiveAnswers(self, s: str, k: int) -> int:
         size = len(s)
         res = 0
-        T = 0
-        F = 0
-        L = 0
-        R = 0
+        T, F, L, R = 0, 0, 0, 0
         while R < size:
             if s[R] == 'T':
                 T += 1
