@@ -1,4 +1,4 @@
-nction minOperations(nums: number[]): number {
+function minOperations(nums: number[]): number {
     let len: number = nums.length
     let res: number = 0
     let i: number = 0 // start from 1

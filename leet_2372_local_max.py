@@ -14,3 +14,4 @@ class Solution:
             for c in range(C):
                 res[r][c] = local_max(g, r, c)
         return res
+

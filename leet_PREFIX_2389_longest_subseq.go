@@ -1,5 +1,5 @@
 func answerQueries(nums []int, queries []int) []int {
-    sort.Ints(nums)
+    sort.Ints(nums) 
     n := len(nums)
     m := len(queries)
     prefix := 0

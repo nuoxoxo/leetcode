@@ -9,7 +9,7 @@ class Solution:
         res = ''
         for i in range(len1 - 1, -1, -1):
             for j in range(len2 - 1, -1, -1):
-                
+
                 # way 1
                 L = ord(num1[i]) - zero
                 R = ord(num2[j]) - zero
