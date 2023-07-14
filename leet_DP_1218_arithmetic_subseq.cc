@@ -3,10 +3,9 @@ public:
     int longestSubsequence(vector<int>& arr, int diff)
     {
         unordered_map<int, int> dict;
-        int i = -1;
-        while (++i < (int) arr.size())
+        for (int & n : arr)
         {
-            dict[arr[i]] = dict[arr[i] - diff] + 1;
+            dict[n] = dict[n - diff] + 1;
         }
         return (*max_element(
             dict.begin(),
