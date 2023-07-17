@@ -6,6 +6,31 @@
 
 class Solution:
     def addTwoNumbers(self, a: Optional[ListNode], b: Optional[ListNode]) -> Optional[ListNode]:
+        L = []
+        R = [] # keeping 2 deques, one for each list
+
+        while l1:
+            L.append(l1.val)
+            l1 = l1.next
+        while l2:
+            R.append(l2.val)
+            l2 = l2.next
+
+        res = None
+        carry = 0
+        while carry != 0 or L or R:
+            node = ListNode(0)
+            l = 0 if not L else L.pop()
+            r = 0 if not R else R.pop()
+            node.val = (l + r + carry) % 10
+            carry = (l + r + carry) // 10
+            node.next = res
+            res = node
+        return res
+
+        # old soln, almost the same
+
+        """
         s1 = []
         s2 = []
         while a:
@@ -26,3 +51,5 @@ class Solution:
             node.next = head
             head = node
         return head
+        """
+
