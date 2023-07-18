@@ -16,12 +16,16 @@ public:
     {
         if (!root)
             return 0;
+
         deque<TreeNode *>   dq = {root};
+
         TreeNode    *node;
         int res = 0;
         int len, i;
+
         while (dq.size())
         {
+
             len = (int) dq.size();
             i = -1;
             while (++i < len)
@@ -35,6 +39,7 @@ public:
                     dq.push_back(node->right);
             }
         }
+
         return res;
     }
 };
