@@ -1,34 +1,32 @@
 class Solution:
-    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+    def asteroidCollision(self, ads: List[int]) -> List[int]:
         Q = []
-        """for a in asteroids:
-            big = a
-            while Q and big * Q[-1] < 0:
-                big = None
-                if abs(big) > abs(Q[-1]):
-                    big = a
-                elif abs(big) < abs(Q[-1]):
-                    big = Q[-1]
-                print(Q, big, 'in')
-                Q.pop()
-            if big != None:
-                Q.append(big)
-            print(Q, big, 'out')
-        """
         i = 0
-        a = asteroids
-        while i < len(a):
-            if not Q or a[i] > -1 or Q[-1] < 0:
-                Q.append(a[i])
+        while i < len(ads):
+            if not Q:
+                Q.append(ads[i])
                 i += 1
-            elif a[i] + Q[-1] < 0:
+
+            # ( -, + ) <queue[-1], incoming>
+            # ---> No collision bc they part ways ( << , >> )
+            elif ads[i] > -1:
+                # this one moves >> or stays put
+                Q.append(ads[i])
+                i += 1
+            elif Q[-1] < 0:
+                # this one moves <<
+                Q.append(ads[i])
+                i += 1
+
+            # ( + , - )<queue[-1], incoming>
+            # ---> Is the only possoble colliding scenario
+            elif Q[-1] + ads[i] == 0:
+                # either they cancel each other
                 Q.pop()
-                # i -= 1
-            elif a[i] + Q[-1] == 0:
                 i += 1
+            elif Q[-1] + ads[i] < 0:
+                # or queue[-1] gets eaten
                 Q.pop()
             else:
                 i += 1
-            # i += 1
         return Q
-
