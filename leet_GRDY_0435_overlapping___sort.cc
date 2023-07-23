@@ -4,8 +4,8 @@ public:
     {
         sort(I.begin(), I.end());
 
-        // UP == DOWN : sort by [0] by default
-
+        //  Default sort is sort by [0]
+        //  thus, no need to write this:
         // sort(I.begin(), I.end(), [](vector<int> & a, vector<int> & b) {
         //     return a[0] < b[0];
         // });
@@ -25,3 +25,4 @@ public:
         return res;
     }
 };
+
