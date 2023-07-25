@@ -4,8 +4,8 @@ func peakIndexInMountainArray(arr []int) int {
 	R := len(arr) - 1
 
 	for L <= R {
-		mid := (R-L+1)/2 + L
-		if arr[mid] < arr[mid+1] {
+		mid := (R - L + 1) / 2 + L
+		if arr[mid] < arr[mid + 1] {
 			L = mid + 1
 		} else {
 			R = mid - 1
@@ -13,3 +13,4 @@ func peakIndexInMountainArray(arr []int) int {
 	}
 	return L
 }
+
