@@ -9,8 +9,7 @@ public:
         {
             if (nums[0] != target)
                 return false;
-            else
-                return true;
+            return true;
         }
         if (nums[L] == target || nums[R] == target)
             return true;
@@ -21,6 +20,7 @@ public:
         while (L < R)
         {
             int mid = (L + R) / 2;
+
             if (nums[mid] == target)
                 return true;
             if (nums[0] < nums[mid])
@@ -41,3 +41,4 @@ public:
         return false;
     }
 };
+
