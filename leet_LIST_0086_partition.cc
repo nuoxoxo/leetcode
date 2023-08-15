@@ -13,32 +13,31 @@ class Solution {
 public:
     ListNode* partition(ListNode* head, int x)
     {
-        vector<int> right;
-        vector<int> left;
+        vector<int> L;
+        vector<int> R;
         ListNode    *p;
         int         n;
 
         if (!head)
             return (head);
+
         p = head;
         while (p)
         {
             n = p->val;
-            if (n == x)
-                right.push_back(n);
-            else if (n < x)
-                left.push_back(n);
+            if (n < x)
+                L.push_back(n);
             else
-                right.push_back(n);
+                R.push_back(n);
             p = p->next;
         }
         p = head;
-        for (int i: left)
+        for (int i: L)
         {
             p->val = i;
             p = p->next;
         }
-        for (int i: right)
+        for (int i: R)
         {
             p->val = i;
             p = p->next;
@@ -46,3 +45,4 @@ public:
         return head ;
     }
 };
+
