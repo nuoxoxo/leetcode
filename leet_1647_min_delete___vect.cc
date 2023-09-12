@@ -2,27 +2,19 @@ class Solution {
 public:
     int minDeletions(string s)
     {
-        vector<int> e(26, 0);
-        int i, pos, len, res;
-
-        len = s.length();
+        vector<int> count(26, 0);
+        int i = -1, res = 0;
+        while (++i < s.length())
+            ++count[s[i] - 'a'];
         i = -1;
-        while (++i < len)
-        {
-            pos = s[i] - 'a';
-            e[pos]++;
-        }
-        sort(e.begin(), e.end());
-        res = 0;
-        i = -1;
+        sort(count.begin(), count.end());
         while (++i < 25)
         {
-            if (e[i] && e[i] == e[i + 1])
-            {
-                e[i] -= 1;
-                res += 1;
-                i = -1;
-            }
+            if (!count[i] || count[i] != count[i + 1])
+                continue ;
+            --count[i];
+            ++res;
+            i = -1;
         }
         return res;
     }
