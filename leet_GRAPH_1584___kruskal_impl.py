@@ -1,18 +1,18 @@
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
-        def manh_dist(x, y):
-            return abs(x[0] - y[0]) + abs(x[1] - y[1])
+        def Man(L, R):
+            return abs(L[0] - R[0]) + abs(L[1] - R[1])
         pq = []
-        tt = 0
-        for i in range(1, len(points)):
-            heapq.heappush(
-                pq,
-                [ manh_dist(points[0], points[i]), points[i] ]
-            )
+        p0 = points.pop(0)
+        res = 0
+        for p in points:
+            dist = Man(p0, p)
+            pq.append([dist, p])
+        pq.sort(key=lambda x: x[0])
         while pq:
-            temp = heapq.heappop(pq)
-            tt += temp[0]
-            for dist in pq:
-                dist[0] = min(dist[0], manh_dist(temp[1], dist[1]))
-            heapq.heapify(pq)
-        return tt
+            dist, coor = pq.pop(0)
+            res += dist
+            for i in range(len(pq)):
+                pq[i][0] = min(pq[i][0], Man(pq[i][1], coor))
+            pq.sort(key=lambda x: x[0])
+        return res
