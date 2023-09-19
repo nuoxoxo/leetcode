@@ -2,18 +2,22 @@ class Solution {
 public:
     int findDuplicate(vector<int>& nums)
     {
-        sort(nums.begin(), nums.end());
-        int n = nums.size();
-        if (n == 2)
+        int len = nums.size();
+        if (len == 2)
             return nums[0];
-        int i = 0, j = n - 1;
-        while (++i != --j && i < n / 2 && j > n / 2)
+        sort(nums.begin(), nums.end());
+        int i = 1;
+        int j = len - 2;
+        int mid = len / 2;
+        while (i ^ j && i < mid && j > mid)
         {
             if (nums[i] == nums[i - 1])
                 return nums[i];
             if (nums[j] == nums[j + 1])
                 return nums[j];
+            ++i;
+            --j;
         }
-        return nums[i] ;
+        return nums[mid];
     }
 };
