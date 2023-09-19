@@ -3,11 +3,10 @@ public:
     vector<int> decode(vector<int>& encoded, int first)
     {
         vector<int> res = {first};
-
-        for (int n : encoded)
+        int i = -1;
+        while (++i < (int) encoded.size())
         {
-            first ^= n;
-            res.push_back(first);
+            res.push_back(encoded[i] ^ res.back());
         }
         return res;
     }
