@@ -1,17 +1,17 @@
 class Solution:
-    def findDuplicate(self, nums: List[int]) -> int:
-        nums.sort()
-        L = len(nums)
-        if L == 2:
-            return nums[0]
+    def findDuplicate(self, n: List[int]) -> int:
+        L = len(n)
+        if L is 2:
+            return n[0]
+        n.sort()
         i = 1
         j = L - 2
         mid = L // 2
         while i != j and i < mid and j > mid:
-            if nums[i] == nums[i - 1]:
-                return nums[i]
-            if nums[j] == nums[j + 1]:
-                return nums[j]
+            if n[i] == n[i - 1]:
+                return n[i]
+            if n[j] == n[j + 1]:
+                return n[j]
             i += 1
             j -= 1
-        return nums[i]
+        return n[mid]
