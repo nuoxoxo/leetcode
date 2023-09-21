@@ -1,23 +1,24 @@
 class Solution {
 public:
-    int minOperations(vector<int>& nums, int x) {
+    int minOperations(vector<int>& nums, int x)
+    {
         int tt = 0;
-        for (int n : nums)
+        for (int n: nums)
             tt += n;
-        int Max = -1;
+        int len = (int) nums.size();
+        int window = -1;
+        int R = -1;
+        int L = 0;
         int curr = 0;
-        int l = 0;
-        int r = -1;
-        while (++r < (int) nums.size())
+        while (++R < len)
         {
-            curr += nums[r];
-            while (l <= r && curr > tt - x)
-                curr -= nums[l++];
+            curr += nums[R];
+            while (curr > tt - x && L <= R)
+                curr -= nums[L++];
             if (curr == tt - x)
-                Max = max(Max, r - l + 1);
+                window = max(window, R - L + 1);
         }
-        if (Max < 0)
-            return -1;
-        return nums.size() - Max;
+        return window == -1 ? -1 : len - window;
     }
 };
+
