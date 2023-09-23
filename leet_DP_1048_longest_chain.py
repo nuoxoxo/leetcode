@@ -1,11 +1,11 @@
 class Solution:
-    def longestStrChain(self, arr: List[str]) -> int:
-        dp = defaultdict(lambda: 0)
-        arr.sort(key=len)
+    def longestStrChain(self, words: List[str]) -> int:
+        dp = defaultdict(int)
+        words.sort(key = len)
         res = 1
-        for s in arr:
-            for i in range(len(s)):
-                tmp = s[:i] + s[i + 1:]
-                dp[s] = max(dp[s], dp[tmp] + 1)
-            res = max(res, dp[s])
+        for w in words:
+            for i in range(len(w)):
+                s = w[:i] + w[i + 1:] # s is w minus the char w[i]
+                dp[w] = max(dp[w], dp[s] + 1)
+            res = max(res, dp[w])
         return res
