@@ -1,3 +1,18 @@
+/*
+
+                1
+            .5      .5 of prev
+        .25     .5      .25
+    .125    .625    .625    .125
+
+                1
+            1/2     1/2             (of prev)
+        1/2     .5+.5   1/2         (of prev)
+    1/2     .5+.5   .5+.5   1/2     (of prev)
+1/2     .5+.5   .5+.5   .5+.5   1/2 (of prev)
+
+*/
+
 function champagneTower(poured: number, query_row: number, query_glass: number): number {
     let level:number[] = [ poured ]
     let n = 0
