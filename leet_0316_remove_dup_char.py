@@ -1,22 +1,21 @@
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
-        visited = [False] * 26
-        counter = [0] * 26
-        # print(visited, count, sep='\n')
-        size = len(s)
-        res = ""
+        seen = [False] * 26
+        count = [0] * 26
+        res = ''
         a = ord('a')
         for c in s:
-            counter[ord(c) - a] += 1
+            count[ord(c) - a] += 1
         for c in s:
-            n = ord(c)
-            if visited[n - a] is True:
-                counter[n - a] -= 1
-            else:
-                while res != "" and ord(res[-1]) >= n and counter[ord(res[-1]) - a] > 1:
-                    counter[ord(res[-1]) - a] -= 1
-                    visited[ord(res[-1]) - a] = False
+            asc = ord(c)
+            if not seen[asc - a]:
+                while res != '' and ord(res[-1]) > asc and count[ord(res[-1]) - a] > 1:
+                    count[ord(res[-1]) - a] -= 1
+                    seen[ord(res[-1]) - a] = False
                     res = res[:-1]
+                seen[asc - a] = True
                 res += c
-                visited[n - a] = True
+            else:
+                count[asc - a] -= 1
         return res
+
