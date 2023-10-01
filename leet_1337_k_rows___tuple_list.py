@@ -9,4 +9,4 @@ class Solution:
         arr.sort()
         for i in range(k):
             res.append(arr[i][1])
-        return res            
+        return res
