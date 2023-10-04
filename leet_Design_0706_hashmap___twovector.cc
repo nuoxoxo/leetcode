@@ -1,33 +1,36 @@
 class MyHashMap {
 public:
-    
-    vector<int> keys;
-    vector<int> vals;
-    
-    MyHashMap() {}
+    vector<int> K;
+    vector<int> V;
+    int Size = 0;
+
+    MyHashMap() {
+        
+    }
     
     void put(int key, int value)
     {
         int i = -1;
-        while (++i < keys.size())
+        while (++i < Size)
         {
-            if (keys[i] == key)
+            if (K[i] == key)
             {
-                vals[i] = value;
-                return ;
+                V[i] = value;
+                return;
             }
         }
-        keys.push_back(key);
-        vals.push_back(value);
+        K.push_back(key);
+        V.push_back(value);
+        Size++;
     }
     
     int get(int key)
     {
         int i = -1;
-        while (++i < keys.size())
+        while (++i < Size)
         {
-            if (keys[i] == key)
-                return vals[i];
+            if (K[i] == key)
+                return V[i];
         }
         return -1;
     }
@@ -35,16 +38,16 @@ public:
     void remove(int key)
     {
         int i = -1;
-        while (++i < keys.size())
+        while (++i < Size)
         {
-            if (keys[i] == key)
+            if (K[i] == key)
             {
-                keys.erase(keys.begin() + i);
-                vals.erase(vals.begin() + i);
-                break;
+                K.erase(K.begin() + i);
+                V.erase(V.begin() + i);
+                Size--;
+                break ;
             }
         }
-        
     }
 };
 
