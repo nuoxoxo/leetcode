@@ -1,3 +1,5 @@
+class Solution {
+public:
     bool checkPerfectNumber(int num)
     {
         if (num < 2)
@@ -14,4 +16,5 @@
         if (num % n == 0 && (int) sqr >= n)
             res += n;
         return res == num;
-    
+    }
+};
