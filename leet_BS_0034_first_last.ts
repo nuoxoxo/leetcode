@@ -1,7 +1,7 @@
 function searchRange(nums: number[], target: number): number[] {
-    let len = nums.length
-    let r = len - 1
-    let l = 0
+    let len: number = nums.length
+    let l: number = 0
+    let r: number = len - 1
     while (l <= r) {
         let mid = Math.floor((r - l) / 2) + l
         if (nums[mid] == target) {
@@ -12,12 +12,13 @@ function searchRange(nums: number[], target: number): number[] {
             while (r < len && nums[r] == target) {
                 ++r
             }
-            return [l + 1, r - 1]
+            return [ l + 1, r - 1 ]
         }
-        if (nums[mid] > target)
+        if (nums[mid] > target) {
             r = mid - 1
-        else
+        } else {
             l = mid + 1
+        }
     }
     return [-1, -1]
 };
