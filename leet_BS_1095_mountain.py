@@ -34,7 +34,7 @@ class Solution:
             n = mountain_arr.get(mid)
             if n == target:
                 return mid
-            elif n < target:
+            if n < target:
                 l = mid + 1
             else:
                 r = mid - 1
@@ -52,7 +52,7 @@ class Solution:
             """
             if n == target:
                 return mid
-            elif n > target:
+            if n > target:
                 l = mid + 1
             else:
                 r = mid - 1
