@@ -20,12 +20,12 @@ public:
         while (l <= r)
         {
             mid = (r - l) / 2 + l;
-            int L = mountainArr.get(mid + 1);
-            int R = mountainArr.get(mid - 1);
+            int L = mountainArr.get(mid - 1);
+            int R = mountainArr.get(mid + 1);
             int M = mountainArr.get(mid);
-            if (L < M < R)
+            if (L < M && M  < R)
                 l = mid + 1;
-            else if (L > M > R)
+            else if (L > M && M > R)
                 r = mid - 1;
             else
                 break ;
