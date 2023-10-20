@@ -22,33 +22,22 @@
 
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
-        def flatten(lol): # list of lists
-            ni = [] # nested ints
-            for n in lol:
-                if n.isInteger():
-                    ni.append(n.getInteger())
+        def _flatten (lol):
+            res = []
+            for item in lol:
+                if item.isInteger():
+                    res.append(item.getInteger())
                 else:
-                    ni.extend(flatten(n.getList()))
-            return ni
-        self.ni = flatten(nestedList)
-
-
+                    res.extend(_flatten(item.getList()))
+            return res
+        self._arr = _flatten(nestedList)
+    
     def next(self) -> int:
-        if len(self.ni) != 0:
-            n = self.ni[0]
-            self.ni.pop(0)
-            return n
-
-
+        return self._arr.pop(0)
+    
     def hasNext(self) -> bool:
-         return len(self.ni) != 0
-
+         return len(self._arr) > 0
 
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
 # while i.hasNext(): v.append(i.next())
-
-
-
-
-
