@@ -17,45 +17,42 @@
  */
 
 class NestedIterator {
+
+vector<int> _vec;
+int     _len;
+
 public:
-    
-    vector<int> v;
-    int         s;
-    
+
+    void    m_flatten(vector<NestedInteger> & nestedList)
+    {
+        for (auto item: nestedList)
+        {
+            if (item.isInteger())
+                _vec.push_back(item.getInteger());
+            else
+                m_flatten(item.getList());
+        }
+    }
+
     NestedIterator(vector<NestedInteger> &nestedList)
     {
-        flatten(nestedList);
-        s = v.size();
+        m_flatten(nestedList);
+        _len = (int) _vec.size();
     }
     
     int next()
     {
-        int res ;
-        if (s)
+        int res; // non init - undefined bhv.
+        if (_len)
         {
-            res = v[0];
-            v.erase(v.begin());
-            --s;
+            res = _vec[0];
+            _vec.erase(_vec.begin());
+            _len--;
         }
         return res;
     }
     
-    bool hasNext()
-    {
-        return s > 0;
-    }
-
-    //  create one more helper func
-    void    flatten(vector<NestedInteger> &nestedList)
-    {
-        for (auto n: nestedList)
-        {
-            if (n.isInteger())
-                v.push_back(n.getInteger());
-            else
-                flatten(n.getList());
-        }
-    }
+    bool hasNext() const { return _len > 0; }
 };
 
 /**
