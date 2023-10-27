@@ -33,12 +33,12 @@ var longestPalindrome = function(s) {
             R += 1
         }
     }
-    if (head == tail)
+    /* if (head == tail)
     {
         if (head * 2 == n)
             return s.substring(head)
         return s[0]
-    }
+    }*/
     return s.substring(head, head + tail)
 }
 /*
