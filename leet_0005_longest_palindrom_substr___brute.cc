@@ -2,39 +2,53 @@ class Solution {
 public:
     string longestPalindrome(string s)
     {
-        int from = 0, to = 1, i = 0;
-        int len = s.length();
-        int L, R, dist;
-
+        int len = (int) s.length();
+        if (len == 1)
+            return s;
+        int begin = 0;
+        int end = 1;
+        int i = 0, l, r;
         while (++i < len)
         {
-            L = i - 1;
-            R = i;
-            while (R < len && L > -1 && s[L] == s[R])
+            // type 1 : even
+            l = i - 1;
+            r = i;
+            while (r < len && l > -1 && s[l] == s[r])
             {
-                dist = R - L + 1;
-                if (dist > to)
+                int temp = r - l + 1;
+                if (end < temp)
                 {
-                    to = dist;
-                    from = L;
+                    end = temp;
+                    begin = l;
                 }
-                --L;
-                ++R;
+                --l;
+                ++r;
             }
-            L = i - 1;
-            R = i + 1;
-            while (R < len && L > -1 && s[L] == s[R])
+            // type 2 : odd
+            l = i - 1;
+            r = i + 1;
+            while (r < len && l > -1 && s[l] == s[r])
             {
-                dist = R - L + 1;
-                if (dist > to)
+                int temp = r - l + 1;
+                if (end < temp)
                 {
-                    to = dist;
-                    from = L;
+                    end = temp;
+                    begin = l;
                 }
-                --L;
-                ++R;
+                --l;
+                ++r;
             }
         }
-        return s.substr(from, to);
+        return s.substr(begin, end);
     }
 };
+
+/*
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"babad"
+"cbbd" ---> "bbd" (wrong output)
+"a"
+"ac"
+"acc"
+*/
+
