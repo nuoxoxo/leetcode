@@ -2,25 +2,24 @@ class Solution {
 public:
     vector<int> sortByBits(vector<int>& arr)
     {
-        sort(arr.begin(), arr.end(), 
-             [&](int& a, int& b) {
-                 int x = countOnebits(a), y = countOnebits(b);
-                 if (x == y) return a < b;
-                 return x < y ;
-             }
-        );
-        return arr ;
+        sort(arr.begin(), arr.end(), [&](int a, int b) {
+            int n1 = counter(a);
+            int n2 = counter(b);
+            if (n1 == n2)
+                return a < b;
+            return n1 < n2;
+        });
+        return arr;
     }
 
-    int countOnebits(int n)
+    int counter(int a)
     {
-        int c = 0 ;
-
-        while (n)
+        int res = 0;
+        while (a)
         {
-            c += n & 1;
-            n = n >> 1;
+            res += a & 1;
+            a >>= 1;
         }
-        return c ;
+        return res ;
     }
 };
