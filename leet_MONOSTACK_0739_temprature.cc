@@ -1,51 +1,40 @@
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures)
+    vector<int> dailyTemperatures(vector<int>& temp /*temperatures*/)
     {
-        vector<int> res(temperatures.size(), 0);
+        vector<int> res((int) temp.size(), 0);
         stack<int>  hot;
-        int         i;
+        int i = (int)temp.size();
         
-        i = temperatures.size();
         while (--i > -1)
         {
-            while (!hot.empty() && (temperatures[i] >= temperatures[hot.top()]))
+            while (!hot.empty() && (temp[i] >= temp[hot.top()]))
                 hot.pop();
-            if (!hot.empty())   res[i] = hot.top() - i;
+            if (!hot.empty())
+                res[i] = hot.top() - i;
             hot.push(i);
         }
         return (res);
-    }
-};
-
-/*
-
-/// brute forcing gets you TLE
-
-class Solution {
-public:
-    vector<int> dailyTemperatures(vector<int>& temperatures)
-    {
-        vector<int> answer;
-        int         i, j;
-
-        i = -1;
-        while (++i < temperatures.size() - 1)
+        /*
+        vector<int> res;
+        int len = (int) temp.size();
+        int i = -1, j;
+        while (++i < len - 1)
         {
             j = i;
-            while (++j < temperatures.size())
+            while (++j < len)
             {
-                if (temperatures[j] > temperatures[i])
+                if (temp[i] < temp[j])
                 {
-                    answer.push_back(j - i);
-                    break;
+                    res.push_back(j - i);
+                    break ;
                 }
             }
-            if (answer.size() != i + 1) answer.push_back(0);
+            if ((int)res.size() ^ i + 1)
+                res.push_back(0);
         }
-        answer.push_back(0);
-        return (answer);
+        res.push_back(0);
+        return res;
+        */
     }
 };
-
-*/
