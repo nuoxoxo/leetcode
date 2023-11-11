@@ -10,7 +10,6 @@ func restoreArray(adjacentPairs [][]int) []int {
 		idg[b]++
 	}
 
-	size := len(adjacentPairs) + 1
 	res := make([]int, 0, size)
 	isFound := false
 
