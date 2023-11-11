@@ -10,7 +10,6 @@ function restoreArray(adjacentPairs: number[][]): number[] {
       idg[a] = (idg[a] || 0) + 1
       idg[b] = (idg[b] || 0) + 1
     }
-    let size = adjacentPairs.length + 1
     let res: number[] = []
     let isFound = false
     let head: number, tail: number
