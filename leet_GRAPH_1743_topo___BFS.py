@@ -7,7 +7,6 @@ class Solution:
             D[b].append(a)
             idg[a] += 1
             idg[b] += 1
-        size = len(adjacentPairs) + 1
         res = []
         isFound = False
         # look for the beginning
