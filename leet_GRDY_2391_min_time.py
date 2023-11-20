@@ -12,7 +12,6 @@ class Solution:
             gg += t + ifg
             mm += t + ifm
             pp += t + ifp
-            ifg, ifm, ifp = s.count('G'), s.count('M'), s.count('P')
             if ifg > 0:
                 G = gg
             if ifm > 0:
