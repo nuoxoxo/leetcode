@@ -8,7 +8,7 @@ func countNicePairs(nums []int) int {
 			res = res * 10 + n % 10
 			n /= 10
 		}
-		D[original-res]++
+		D[original - res]++
 	}
 	res := 0
 	for _, v := range D {
