@@ -4,7 +4,7 @@ func findDiagonalOrder(nums [][]int) []int {
     colmax := 0
     var c int
     for r < len(nums) {
-        c = 0
+        c = 0 
         for c < len(nums[r]) {
             D[r + c] = append(D[r + c], nums[r][c])
             c++
@@ -12,14 +12,7 @@ func findDiagonalOrder(nums [][]int) []int {
         }
         r++
     }
-
-    // perks of go
-    var keys []int
-	for k := range D {
-		keys = append(keys, k)
-	}
-
-    fmt.Println(D)
+    // fmt.Println(D)
     var res []int
     //  Perks of Go : key order is undefined when traversing a map like this:
     /*
