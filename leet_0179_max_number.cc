@@ -14,8 +14,7 @@ public:
         int i = 0;
         while (res[i] == '0')
             ++i;
-        res.erase(0, i);
-        if (res == "")
+        if (i == (int) res.size())
             return "0"; 
         return res;
     }
