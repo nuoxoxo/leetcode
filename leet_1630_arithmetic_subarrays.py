@@ -1,23 +1,24 @@
 class Solution:
     def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
         res = []
-        m = len(l)
-        for i in range(m):
-            temp = nums[l[i]:r[i] + 1]
-            print(temp)
-            if len(temp) == 2:
+        size = len(nums)
+        for i in range(len(l)):
+            # end = min(r[i] + 1, size)
+            # tmp = nums[l[i] : end]
+            tmp = nums[l[i] : r[i] + 1]
+            if len(tmp) < 3:
                 res.append(True)
-                continue 
-            temp.sort()
-            diff = temp[1] - temp[0]
-            j = 1
-            found = False
-            for j in range(2, len(temp)):
-                if temp[j] - temp[j - 1]^ diff:
-                    found = True
+                continue
+            tmp.sort()
+            diff = tmp[1] - tmp[0]
+            ok = True
+            for j in range(1, len(tmp)):
+                if tmp[j] - tmp[j - 1] != diff:
+                    ok = False
                     break
-            if found == 0:
+            if ok:
                 res.append(True)
             else:
                 res.append(False)
         return res
+
