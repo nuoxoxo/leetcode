@@ -3,8 +3,9 @@ func checkArithmeticSubarrays(nums []int, l []int, r []int) []bool {
     var res []bool
     for i := 0; i < len(l); i++ {
 
-        //  Wrong way
-        // sort.Ints(nums)
+        // Wrong: sorting sub-slice will sort original slice in Go 
+        // tmp = nums[l[i] : r[i] + 1]
+        // sort.Ints(tmp)
 
         // Correct way 1
         tmp := append([]int(nil), nums[l[i] : r[i] + 1] ...)
