@@ -14,20 +14,17 @@ public:
                 continue ;
             }
             sort(temp.begin(), temp.end());
-            int diff = temp[1] - temp[0], j = 1, found = 0;
-            cout << i << endl;
+            int diff = temp[1] - temp[0], j = 1;
+            bool ok = true;
             while (++j < temp.size())
             {
                 if (temp[j] - temp[j - 1] != diff)
                 {
-                    found = 1;
+                    ok = false;
                     break ;
                 }
             }
-            if (!found)
-                res.push_back(true);
-            else
-                res.push_back(false);
+            res.push_back(ok);
         }
         return res ;
 

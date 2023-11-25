@@ -1,4 +1,19 @@
 func minPairSum(nums []int) int {
+
+    sort.Ints(nums)
+    res := 0
+    l := 0
+    r := len(nums) - 1
+    for l < r {
+        if res < nums[l] + nums[r] {
+            res = nums[l] + nums[r]
+        }
+        l++
+        r--
+    }
+    return res
+
+    /*
 	sort.Ints(nums)
 
 	size := len(nums)
@@ -10,11 +25,14 @@ func minPairSum(nums []int) int {
 		i++
 	}
 	return res
+    */
 }
 
+/*
 func max(a, b int) int {
 	if a > b {
 		return a
 	}
 	return b
 }
+*/
