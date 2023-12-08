@@ -28,4 +28,22 @@ public:
         }
         return res;
     }
+
+    // way 2
+    /*
+    string tree2str(TreeNode* node ) {//root) {
+        if ( !node)
+            return "";
+        string res = to_string(node->val);
+        string L = tree2str(node->left);
+        string R = tree2str(node->right);
+        if (L == "" and R != "")
+            res += "()";
+        if (L != "")
+            res += "(" + L + ")";
+        if (R != "")
+            res += "(" + R + ")";
+        return res;
+    }
+    */
 };
