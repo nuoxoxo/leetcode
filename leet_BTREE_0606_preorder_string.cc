@@ -11,9 +11,21 @@
  */
 class Solution {
 public:
-    string tree2str(TreeNode* node /*root*/) {
-        def preorder(node):
-        
+    string tree2str(TreeNode* root) {
+        return preorder( root );
+    }
+    std::string preorder(TreeNode * node) {
+        if (!node)
+            return "";
+        std::string res = to_string(node->val);
+        if (node->left)
+            res += '(' + preorder(node->left) + ')';
+        if (node->right)
+        {
+            if (!node->left)
+                res += "()";
+            res += '(' + preorder(node->right) + ')';
+        }
         return res;
     }
 };
