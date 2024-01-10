@@ -17,12 +17,12 @@ class Solution:
                 return left
             return DFS_find_start( node.right, start )
 
-        def DFS_prepare_parent (node, parent: TreeNode):
+        def DFS_prepare_parents (node, parent: TreeNode):
             if not node:
                 return
             node.parent = parent
-            DFS_prepare_parent ( node.left, node )
-            DFS_prepare_parent ( node.right, node )
+            DFS_prepare_parents ( node.left, node )
+            DFS_prepare_parents ( node.right, node )
 
         def DFS_max_dist_from (node, seen: Set[int]):
             if not node or node in seen:
@@ -38,7 +38,7 @@ class Solution:
 
         # step 2/3 : we need to include '.parent' attribute in a TreeNode
         # to do this in python is simple - just add .parent to each node 
-        DFS_prepare_parent(root, None)
+        DFS_prepare_parents(root, None)
 
         # step 3/3 : visualize the original problem
         # TimeToCoverAll is in fact the dist btw [ here, furthest node ]
