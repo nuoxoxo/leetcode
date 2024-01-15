@@ -24,7 +24,7 @@ class Solution:
                 wins.add(w)
         return [ sorted(wins), sorted(lose) ]
 
-    # Solution 2 - o(n) s(3n)
+    # Solution 2 - o(n)
     # Only one dict/map will do the job
 
     def Solution_1dict(self, matches):
