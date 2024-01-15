@@ -12,12 +12,14 @@
 class Solution {
 public:
     int maxAncestorDiff(TreeNode* root) {
-        int n = std::rand() % 2;
-        cout << (n ? "BFS" : "DFS") << endl;
-        return n ? BFS(root, root->val, root->val) : DFS(root, root->val, root->val);
+
+        int ( * Solutions [] )( TreeNode *, int, int ) = { BFS, DFS };
+        return Solutions[ std::rand() % 2 ]( root, root->val, root->val );
     }
+
     // BFS
-    int BFS(TreeNode * node, int L, int R) {
+
+    static int BFS(TreeNode * node, int L, int R) {
         std::deque<std::tuple< TreeNode *, int, int>> D{ {node, L, R} };
         int res = 0;
         while ( ! D.empty() ) {
@@ -36,8 +38,10 @@ public:
         }
         return res;
     }
+
     // DFS
-    int DFS (TreeNode * node, int L, int R) {
+
+    static int DFS (TreeNode * node, int L, int R) {
         if ( ! node)
             return R - L;
         L = min(L, node->val);
