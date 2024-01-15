@@ -5,8 +5,8 @@ class Solution:
         print([ 'Solution_3sets', 'Solution_1dict' ][ n ])
         return [ self.Solution_3sets, self.Solution_1dict ][ n ](matches)
 
-    # Soln 1 - o(n) s(3n)
-    # Using a win-set and 2 loser-sets - one for 1-lost and an extra for more-than-1 loses
+    # Soln 1 - o(n) s(3n) ---> Using a win-set 
+    # and 2 loser-sets - one for 1-lost and an extra for more-than-1 loses
 
     def Solution_3sets(self, matches): 
         wins, lose, lss = set(),set(),set()
