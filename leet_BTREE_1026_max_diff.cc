@@ -20,6 +20,7 @@ public:
     // BFS
 
     static int BFS(TreeNode * node, int L, int R) {
+        cout << "/BFS\n";
         std::deque<std::tuple< TreeNode *, int, int>> D{ {node, L, R} };
         int res = 0;
         while ( ! D.empty() ) {
@@ -42,6 +43,7 @@ public:
     // DFS
 
     static int DFS (TreeNode * node, int L, int R) {
+        cout << "/DFS\n";
         if ( ! node)
             return R - L;
         L = min(L, node->val);
