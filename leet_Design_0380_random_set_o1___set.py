@@ -1,24 +1,22 @@
 class RandomizedSet:
 
     def __init__(self):
-        self.st = set()
+        self.S = set()
 
     def insert(self, val: int) -> bool:
-        if val in self.st:
+        if val in self.S:
             return False
-        self.st.add(val)
+        self.S.add(val)
         return True
 
     def remove(self, val: int) -> bool:
-        if val not in self.st:
+        if not val in self.S:
             return False
-        self.st.remove(val)
+        self.S.discard(val)
         return True
 
     def getRandom(self) -> int:
-        # return random.choice(self.st) # error: set object not subscriptable
-        return random.sample(self.st, 1)[0]
-
+        return random.choice( list(self.S) )
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()

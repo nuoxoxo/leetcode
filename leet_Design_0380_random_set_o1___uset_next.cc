@@ -1,33 +1,26 @@
 class RandomizedSet {
 public:
-    
-    unordered_set<int>  st;
-    
-    RandomizedSet() {}
-    virtual ~RandomizedSet() {}
-    
-    bool insert(int val)
-    {
-        if (st.find(val) != st.end())
-            return false;
-        st.insert(val);
-        return true;
-    }
-    
-    bool remove(int val)
-    {
-        if (st.find(val) == st.end())
-            return false;
-        st.erase(val);
-        return true;
-    }
-    
-    int getRandom()
-    {
-        int     i;
 
-        i = rand() % (int) st.size();
-        return *next(st.begin(), i);
+    unordered_set<int> S;
+
+    RandomizedSet() {}
+    
+    bool insert(int val) {
+        if (S.find(val) != S.end())
+            return false;
+        S.insert(val);
+        return true;
+    }
+    
+    bool remove(int val) {
+        if (S.find(val) == S.end())
+            return false;
+        S.erase(val);
+        return true;
+    }
+    
+    int getRandom() {
+        return *next(S.begin(), rand() % S.size());
     }
 };
 
