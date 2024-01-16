@@ -1,5 +1,7 @@
 class RandomizedSet {
-    S: Set<number>
+
+    private S: Set<number>
+
     constructor() {
         this.S = new Set()
     }
