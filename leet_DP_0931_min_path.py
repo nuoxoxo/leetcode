@@ -3,7 +3,7 @@ class Solution:
         return [
             self.Solution_DP_extra_matrix,
             self.Solution_DP_in_place,
-        ][ random.randint(1,1) ]( matrix )
+        ][ random.randint(0,1) ]( matrix )
 
     # T( R x C ), S( 1 )
     def Solution_DP_in_place(self, matrix: List[List[int]]) -> int:
