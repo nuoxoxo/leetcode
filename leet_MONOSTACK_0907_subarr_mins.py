@@ -4,14 +4,21 @@ class Solution:
         indexes = []
         sums = [0] * len(arr)
         for i in range(len(arr)):
-            print('/bef.',end=' ')
+
+            # DBG
+            print('/DBG - bef.',end=' ')
             for index in indexes:print(arr[index],end=' ')
+
+            # where magic happens
             while indexes and arr[i] < arr[ indexes[-1] ]:
                 indexes.pop()
-            print()
-            print('/aft.',end=' ')
+
+            # DBG
+            print('\n/DBG - aft.',end=' ')
             for index in indexes:print(arr[index],end=' ')
             print()
+
+            # update? BUG? problematic part
             if not indexes:
                 idx = -1
                 temp = 0
