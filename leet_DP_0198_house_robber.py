@@ -1,15 +1,44 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        s = len(nums)
-        if s == 1: return nums[0]
-        if s == 2: return max(nums[0], nums[1])
-        if s == 3: return max(nums[1], nums[2] + nums[0])
-        E = {}
-        E[0] = nums[0]
-        E[1] = nums[1]
-        E[2] = max(nums[1], nums[0] + nums[2])
-        i = 3
-        while i < s:
-            E[i] = max(nums[i] + E[i - 2], nums[i] + E[i - 3])
-            i += 1
-        return max(E[i - 1], E[i - 2])
+        return [
+            self.Solution_Constant_Space,
+            self.Solution_Topdown_DP,
+            self.Solution_Classic_DP,
+        ][ random.randint(0,2) ]( nums )
+
+    def Solution_Constant_Space(self, nums) -> int:
+        print('/Solution_Constant_Space')
+        if len(nums) < 3: return max (nums)
+        res = 0 # curr
+        prevprev = 0
+        for n in nums:
+            res, prevprev = max(prevprev + n, res), res
+            # or use a temp for res 👆
+        return res
+
+    def Solution_Classic_DP(self, nums) -> int:
+        print('/Solution_Classic_DP')
+        size = len(nums)
+        if size < 3:
+            return max(nums)
+        dp = [0] * (size)
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        dp[2] = max(nums[2] + nums[0], nums[1])
+        for i in range(3, size):
+            dp[i] = max( dp[i - 1], dp[i - 2] + nums[i] )
+        return dp[-1]
+
+    def Solution_Topdown_DP(self, nums) -> int:
+        print('/Solution_Topdown_DP')
+        memo = [-1] * len(nums) # attemt: to fix TLE
+        def dp(nums, i) -> int:
+            if i < 0:
+                return 0
+            if memo[i] != -1:
+                return memo[i]
+            curr = max(dp(nums, i - 1), nums[i] + dp(nums, i - 2))
+            memo[i] = curr
+            return curr
+        return dp( nums, len(nums) - 1 )
+
