@@ -4,15 +4,15 @@ class Solution:
             self.Solution_Constant_Space,
             self.Solution_Topdown_DP,
             self.Solution_Classic_DP,
-        ][ random.randint(0, 2) ]( nums )
+        ][ random.randint(0,2) ]( nums )
 
     def Solution_Constant_Space(self, nums) -> int:
         print('/Solution_Constant_Space')
         if len(nums) < 3: return max (nums)
-        res = 0
-        prev = 0
+        res = 0 # curr
+        prevprev = 0
         for n in nums:
-            res, prev = max(prev + n, res), res
+            res, prevprev = max(prevprev + n, res), res
             # or use a temp for res 👆
         return res
 
