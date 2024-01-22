@@ -9,7 +9,9 @@ class Solution:
 
     def Solution_binary_search(self, x):
         print('/Solution_binary_search')
-        L, R = 0, x
+        if x in [0, 1]:
+            return x
+        L, R = 0, x // 2
         res = L
         while L <= R:
             mid = (R - L) // 2 + L
@@ -34,8 +36,8 @@ class Solution:
 
     def Solution_brute_force(self, x):
         print('/Solution_brute_force')
-        if x == 0:
-            return 0
+        if x in [0, 1]:
+            return x
         res = 1
         while res ** 2 <= x and (res + 1) ** 2 <= x:
             res += 1
