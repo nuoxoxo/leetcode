@@ -28,8 +28,8 @@ func Solution_Binary_Search(x int) int {
 
 func Solution_Newton(x int) int {
     fmt.Println("/Solution_Newton")
-    if x == 0 {
-        return 0
+    if x == 0 || x == 1 {
+        return x
     }
     res := x
     for res * res > x {
@@ -40,7 +40,7 @@ func Solution_Newton(x int) int {
 
 func Solution_Bruteforce(x int)int{
     fmt.Println("/Solution_Bruteforce")
-    if x == 0 {
+    if x == 0 || x == 1 {
         return x
     }
     res := 1
