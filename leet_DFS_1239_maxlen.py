@@ -1,12 +1,24 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
         return [
-            self.Solution_DFS_length_only,
-            self.Solution_DFS_space_heavy,
-        ][ random.randint(0,0) ]( arr )
+            self.Solution_DFS_using_str_fastest,
+            self.Solution_DFS_using_set_space_heavy,
+            self.Solution_DFS_using_set_length_fast,
+        ][ random.randint(0,2) ]( arr )
 
-    def Solution_DFS_length_only(self, arr:List[str]) -> int:
-        print('/Solution_DFS_length_only - O(2^n)')
+    def Solution_DFS_using_str_fastest (self, arr:List[str]) -> int:
+        print('/Solution_DFS_using_str_fastest')
+        def DFS(arr: List[str], formed_string: str, index: int) -> int:
+            if len(set(formed_string)) != len(formed_string):
+                return 0
+            size = len(formed_string)
+            for i in range(index, len(arr)):
+                size = max( size, DFS(arr, formed_string + arr[i], i + 1 ))
+            return size
+        return DFS(arr, '', 0)
+
+    def Solution_DFS_using_set_length_fast(self, arr:List[str]) -> int:
+        print('/Solution_DFS_using_set_length_fast - O(2^n)')
         sets = [ set(s) for s in arr if len(set(s)) == len(s) ]
         N = len(sets)
         seen = set()
@@ -22,8 +34,8 @@ class Solution:
         DFS(seen, 0, N)
         return res
 
-    def Solution_DFS_space_heavy(self, arr:List[str]) -> int:
-        print('/Solution_DFS_space_heavy - O(2^n)')
+    def Solution_DFS_using_set_space_heavy(self, arr:List[str]) -> int:
+        print('/Solution_DFS_using_set_space_heavy - O(2^n)')
         sets = [ set(_) for _ in arr if len(set(_)) == len(_) ] # pre-filter
         self.DBG_setlist( sets )
         N = len(sets)
@@ -46,5 +58,5 @@ class Solution:
 
     def DBG_setlist(self, S: List[Set[str]]) -> None:
         print('/dgb')
-        for _ in S: print( {} if not _ else _)
+        for _ in S: print({} if not _ else _)
         print('\n')
