@@ -1,13 +1,27 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
         return [
+            self.Solution_DFS_using_str_fastest_nonlocal,
             self.Solution_DFS_using_str_fastest,
             self.Solution_DFS_using_set_space_heavy,
             self.Solution_DFS_using_set_length_fast,
-        ][ random.randint(0,2) ]( arr )
+        ][ random.randint(0,0) ]( arr )
+
+    def Solution_DFS_using_str_fastest_nonlocal (self, arr:List[str]) -> int:
+        print('/Solution_DFS_using_str_fastest/modifies only the nonlocal')
+        res = 0
+        def DFS(arr: List[str], formed_string: str, index: int) -> None:
+            if len(set(formed_string)) != len(formed_string):
+                return
+            nonlocal res
+            res = max(res, len(formed_string))
+            for i in range(index, len(arr)):
+                DFS( arr, formed_string + arr[i], i + 1 )
+        DFS( arr, '', 0 )
+        return res
 
     def Solution_DFS_using_str_fastest (self, arr:List[str]) -> int:
-        print('/Solution_DFS_using_str_fastest')
+        print('/Solution_DFS_using_str_fastest/recursively return')
         def DFS(arr: List[str], formed_string: str, index: int) -> int:
             if len(set(formed_string)) != len(formed_string):
                 return 0
