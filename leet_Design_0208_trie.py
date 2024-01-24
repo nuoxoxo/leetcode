@@ -1,15 +1,15 @@
 class TrieNode:
     def __init__(self):
-        self.branch = defaultdict()
+        self.branch = defaultdict(TrieNode)
         self.ended = False
 
 class Trie:
 
     def __init__(self):
-        self.root = TrieNode()
+        self.node = TrieNode()
 
     def insert(self, word: str) -> None:
-        cur = self.root
+        cur = self.node
         for c in word:
             if c not in cur.branch:
                 cur.branch[c] = TrieNode()
@@ -17,7 +17,7 @@ class Trie:
         cur.ended = True
 
     def search(self, word: str) -> bool:
-        cur = self.root
+        cur = self.node
         for c in word:
             if c not in cur.branch:
                 return False
@@ -25,7 +25,7 @@ class Trie:
         return cur.ended
 
     def startsWith(self, prefix: str) -> bool:
-        cur = self.root
+        cur = self.node
         for c in prefix:
             if c not in cur.branch:
                 return False
