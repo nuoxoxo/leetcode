@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import requests
 import json
 
@@ -65,18 +67,19 @@ def printDaily():
     print(Tops)
     print(Typ_)
     print(Like,'\n')
-    print(Hints)
+    print(Hints) if Hints else print('no hints')
     print()
 
-    print(len(sqList))
-
-    for i, sq in enumerate(sqList):
-        print(f'{YL}Similar question{RE} {i + 1}\n')
-        print( f'{sq['questionId']} - {GR}{sq['title']}{RE}' )
-        tops = ', '.join([_['name'] for _ in sq ['topicTags']])
-        print( f'Tags: {tops}' )
-        print( f'Rank: {sq['difficulty']}' )
-        print()
+    if not sqList:
+        print('no similar problems')
+    else:
+        for i, sq in enumerate(sqList):
+            print(f'{YL}Similar question{RE} {i + 1}\n')
+            print( f'{sq['questionId']} - {GR}{sq['title']}{RE}' )
+            tops = ', '.join([_['name'] for _ in sq ['topicTags']])
+            print( f'Tags: {tops}' )
+            print( f'Rank: {sq['difficulty']}' )
+            print()
 
 printDaily()
 
