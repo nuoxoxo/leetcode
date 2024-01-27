@@ -67,6 +67,9 @@ def printDaily():
     print(Like,'\n')
     print(Hints)
     print()
+
+    print(len(sqList))
+
     for i, sq in enumerate(sqList):
         print(f'{YL}Similar question{RE} {i + 1}\n')
         print( f'{sq['questionId']} - {GR}{sq['title']}{RE}' )
