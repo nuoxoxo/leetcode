@@ -1,14 +1,39 @@
 func checkIfExist(arr []int) bool {
 
     Solutions := []func([]int)bool{
-        Solution_mult_2_array,
+        // Solution_mult_2_array,
         // Solution_binary_search,
-        // Solution_even_odd,
+        Solution_even_odd,
     }
     return Solutions[ rand.Intn(len(Solutions)) ](arr)
 }
 
+func Solution_even_odd(arr []int) bool {
+
+    fmt.Println("/Solution_even_odd")
+    indexOf := func (tar int, arr[]int)int{
+        for idx, n := range arr {
+            if n == tar {
+                return idx
+            }
+        }
+        return -1
+    }
+    for idx, n := range arr {
+        if n % 2 == 0 {
+            if indexOf(n / 2, arr[idx + 1:]) != -1 || indexOf(n * 2, arr[idx + 1:]) != -1 {
+                return true
+            }
+        } else if indexOf(n * 2, arr[idx + 1:]) != -1 {
+            return true
+        }
+    }
+    return false
+}
+
 func Solution_mult_2_array(arr []int) bool {
+
+    fmt.Println("/Solution_mult_2_array")
     zeroes := 0
     for _, n := range arr {
         if n == 0 {
@@ -35,6 +60,8 @@ func Solution_mult_2_array(arr []int) bool {
 }
 
 func Solution_binary_search(arr []int) bool {
+
+    fmt.Println("/Solution_binary_search")
     sort.Ints(arr)
     for idx, n := range arr {
         l, r := 0, len(arr) - 1
