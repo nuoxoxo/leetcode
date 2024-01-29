@@ -58,7 +58,7 @@ def printDaily():
     Name = f'{qid} - {GR}{name}{RE}'
     Typ_ = f'Type: {typ_}'
     Diff = f'Rank: {diff}'
-    Like = f'Love: {love}✓:{hate}✖'
+    Like = f'Love: {love}✓ {hate}✖'
     Tops = f'Tags: {tops}'
     Hints = '\n\n'.join([ f'{i}: {_}' for i,_ in enumerate( D['hints']) ])
     print(f'{YL}Daily question{RE}\n')
