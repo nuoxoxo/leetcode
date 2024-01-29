@@ -1,17 +1,26 @@
 // added struct : Node
 
-type Node struct {
+type (
+    Node struct {
+        Val int
+        Next * Node
+    }
+    MyQueue struct {
+        Head * Node
+        Tail * Node
+    }
+)
 
+/*
+type Node struct {
     Val int
     Next * Node
 }
-
 type MyQueue struct {
-
     Head * Node
     Tail * Node
 }
-
+*/
 
 func Constructor() MyQueue {
 
@@ -37,10 +46,6 @@ func (this *MyQueue) Pop() int {
     if this.Empty() {
         panic("/assert: list not empty when pop()")
     }
-    // node := this.Head
-    // if node == nil {
-    //     panic(1)
-    // }
     val := this.Head.Val
     this.Head = this.Head.Next
     if this.Head == nil { // its only node has been popped
