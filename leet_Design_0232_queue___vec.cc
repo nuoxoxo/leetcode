@@ -12,14 +12,14 @@ public:
     }
     
     int pop() {
-        assert( ! this->vec.empty());
+        assert( ! empty());
         int res = this->vec[0];
         this->vec.erase( this->vec.begin() );
         return res;
     }
     
     int peek() {
-        assert( !this->vec.empty() );
+        assert( ! empty() );
         return this->vec[0];
     }
     
