@@ -8,23 +8,23 @@ public:
     }
     
     void push(int x) {
-        this->vec.push_back(x);
+        vec.push_back(x);
     }
     
     int pop() {
         assert( ! empty());
-        int res = this->vec[0];
-        this->vec.erase( this->vec.begin() );
+        int res = vec[0];
+        vec.erase( vec.begin() );
         return res;
     }
     
     int peek() {
         assert( ! empty() );
-        return this->vec[0];
+        return vec[0];
     }
     
     bool empty() {
-        return (!this->vec.size());
+        return (!vec.size());
     }
 };
 
