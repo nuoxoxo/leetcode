@@ -17,7 +17,7 @@ public:
         int i = -1;
         while (++i < t.size())
         {
-            while ( !dq.empty() && t[i] >= t[dq.back()] )
+            while ( !dq.empty() && t[dq.back()] < t[i] ) // '<' used if backward
             {
                 res[ dq.back() ] = i - dq.back();
                 dq.pop_back();
@@ -34,7 +34,7 @@ public:
         int i = t.size();
         while (--i > -1)
         {
-            while ( !dq.empty() && t[i] >= t[dq.back()]  )
+            while ( !dq.empty() && t[dq.back()] <= t[i] ) // '<=' : necessary if backward
                 dq.pop_back();
             if ( !dq.empty() )
                 res[i] = dq.back() - i;
