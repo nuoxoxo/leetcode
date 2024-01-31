@@ -1,40 +1,66 @@
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& temp /*temperatures*/)
+    vector<int> dailyTemperatures(vector<int>& TP)
     {
-        vector<int> res((int) temp.size(), 0);
-        stack<int>  hot;
-        int i = (int)temp.size();
-        
+        vector< vector<int>(*)(vector<int>&) > Solutions {
+            Monotonic_stack_backward,
+            // Monotonic_stack_forward,
+            // Bruteforce_TLE,
+        };
+        return Solutions[ std::rand() % Solutions.size() ](TP);
+    }
+
+    static vector<int> Monotonic_stack_forward(vector<int> & t)
+    {
+        vector<int> res( t.size(), 0 );
+        deque<int>  dq;
+        int i = -1;
+        while (++i < t.size())
+        {
+            while ( !dq.empty() && t[dq.back()] < t[i] ) // '<' used if backward
+            {
+                res[ dq.back() ] = i - dq.back();
+                dq.pop_back();
+            }
+            dq.push_back( i );
+        }
+        return res;
+    }
+
+    static vector<int> Monotonic_stack_backward(vector<int> & t)
+    {
+        vector<int> res( t.size(), 0 );
+        std::deque<int> dq;
+        int i = t.size();
         while (--i > -1)
         {
-            while (!hot.empty() && (temp[i] >= temp[hot.top()]))
-                hot.pop();
-            if (!hot.empty())
-                res[i] = hot.top() - i;
-            hot.push(i);
+            while ( !dq.empty() && t[dq.back()] <= t[i] ) // '<=' : necessary if backward
+                dq.pop_back();
+            if ( !dq.empty() )
+                res[i] = dq.back() - i;
+            dq.push_back(i);
         }
-        return (res);
-        /*
-        vector<int> res;
-        int len = (int) temp.size();
-        int i = -1, j;
+        return res;
+    }
+
+    static vector<int> Bruteforce_TLE(vector<int> & t)
+    {
+        int len = (int) t.size();
+        vector<int> res( len, 0 );
+        int i = -1;
         while (++i < len - 1)
         {
-            j = i;
+            int j = i;
             while (++j < len)
             {
-                if (temp[i] < temp[j])
+                if (t[i] < t[j])
                 {
-                    res.push_back(j - i);
+                    res[i] = j - i;
                     break ;
                 }
             }
-            if ((int)res.size() ^ i + 1)
-                res.push_back(0);
         }
-        res.push_back(0);
         return res;
-        */
     }
+
 };
