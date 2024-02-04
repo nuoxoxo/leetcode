@@ -3,36 +3,34 @@ public:
     string minWindow(string s, string t) {
         vector< string (*) ( string, string )> Solutions {
             Greedy_sliding_window,
-            // Solution_1,
         };
-        return Solutions[ std::rand() % Solutions.size() ]( s, t );
+        return Solutions[ 0/*std::rand() % Solutions.size()*/ ]( s, t );
     }
 
     static string Greedy_sliding_window (string s, string t)
     {
-        std::unordered_map<string, int> tmap = Get_freqof_string( t );
+        std::unordered_map<char, int> tmap = Get_freqof_string( t );
         int slen = s.length();
         int L = 0, R = -1;
-        std::unordered_map<string, int> current;
+        std::unordered_map<char, int> current;
         int resL = -1, resLen = slen + 1;
         while (++R < slen)
         {
-            current[string(1, s[R])]++;
-            // current[s.substr(R, R - L + 1)]++;
-            std::unordered_map<string, int>::iterator it = tmap.begin();
+            current[s[R]]++;
+            std::unordered_map<char, int>::iterator it = tmap.begin();
             bool all = true;
             while (it != tmap.end())
             {
-                string c = it->first;
+                char c = it->first;
                 if (tmap[c] > current[c])
                     all = false;
                 it++;
             }
             if (all)
             {
-                while (current[string(1, s[L])] > tmap[string(1, s[L])])
+                while (current[s[L]] > tmap[s[L]])
                 {
-                    current[string(1, s[L])]--;
+                    current[s[L]]--;
                     L++;
                 }
                 int possible_len = R - L + 1;
@@ -43,17 +41,12 @@ public:
                 }
             }
         }
-        if (resL < 0)
-        {
-            cout << resL << ' ' << resLen << endl;
-            return "";
-        }
-        return s.substr(resL, resLen);
+        return resL > -1 ? s.substr(resL, resLen) : "";
     }
 
-    static std::unordered_map<string, int> Get_freqof_string (string & s) {
-        std::unordered_map<string, int> res;
-        for (char c: s) res[string(1, c)]++;
+    static std::unordered_map<char, int> Get_freqof_string (string & s) {
+        std::unordered_map<char, int> res;
+        for (char c: s) res[ c ]++;
         return res;
     }
 };
