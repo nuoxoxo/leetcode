@@ -4,12 +4,26 @@ class Solution:
     #   - We freely choose an item as many times as we wish
     def change(self, amount: int, coins: List[int]) -> int:
         return [
+            self.Classic_Simpliest_DP,
             self.DFS_with_caching, # classic solution
             self.DP_Reverse_Recurrence_Relation,
             self.DP_Recurrence_Relation,
         ][ 0 ]( amount, coins )
 
+
+    def Classic_Simpliest_DP(self, amount: int, coins: List[int]) -> int:
+
+        dp = [1] + [0] * (amount)
+        for coin in coins:
+            for m in range(1, amount + 1):
+               if m >= coin:
+                   dp[m] += dp[m - coin]
+                   # print('/use_coin', coin, '/to_reach', m, dp)
+        return dp[amount]
+
+
     def DFS_with_caching(self, amount: int, coins: List[int]) -> int:
+
         M, C = amount, len(coins)
         has_cache = [[False] * C for _ in range(M + 1)]
         cache = [[None] * C for _ in range(M + 1)]
@@ -26,7 +40,9 @@ class Solution:
             return res
         return dfs(0, 0)
 
+
     def DP_Reverse_Recurrence_Relation(self, amount: int, coins: List[int]) -> int:
+
         print('/RRR')
         M, C = amount, len(coins)
         dp = [[0 for _ in range(M + 1)] for _ in range(C)]
