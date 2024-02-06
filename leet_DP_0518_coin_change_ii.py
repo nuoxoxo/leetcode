@@ -4,9 +4,27 @@ class Solution:
     #   - We freely choose an item as many times as we wish
     def change(self, amount: int, coins: List[int]) -> int:
         return [
+            self.DFS_with_caching, # classic solution
             self.DP_Reverse_Recurrence_Relation,
             self.DP_Recurrence_Relation,
-        ][ 1 ]( amount, coins )
+        ][ 0 ]( amount, coins )
+
+    def DFS_with_caching(self, amount: int, coins: List[int]) -> int:
+        M, C = amount, len(coins)
+        has_cache = [[False] * C for _ in range(M + 1)]
+        cache = [[None] * C for _ in range(M + 1)]
+        def dfs (m, i):
+            if m == amount:
+                return 1
+            if m > amount or i == len(coins):
+                return 0
+            if has_cache[m][i]:
+                return cache[m][i]
+            res = dfs( m + coins[i], i) + dfs( m, i + 1 )
+            cache[m][i] = res
+            has_cache[m][i] = True
+            return res
+        return dfs(0, 0)
 
     def DP_Reverse_Recurrence_Relation(self, amount: int, coins: List[int]) -> int:
         print('/RRR')
