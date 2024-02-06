@@ -1,6 +1,7 @@
 class Solution:
     # unbounded knapsack problem
     #   - We have an `infinite` number of each coin
+    #   - We freely choose an item as many times as we wish
     def change(self, amount: int, coins: List[int]) -> int:
         return [
             self.DP_Reverse_Recurrence_Relation,
