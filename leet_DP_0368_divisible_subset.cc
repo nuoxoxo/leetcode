@@ -1,6 +1,13 @@
 class Solution {
 public:
     vector<int> largestDivisibleSubset(vector<int>& nums) {
+        vector<vector<int>(*)(vector<int>&)> solutions {
+            DP,
+        };
+        return solutions[0](nums);
+    }
+
+    static vector<int> DP (vector<int> & nums) {
         int len = (int) nums.size();
         if (!len)
             return {};
