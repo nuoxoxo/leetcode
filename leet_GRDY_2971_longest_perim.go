@@ -8,9 +8,7 @@ func largestPerimeter(nums []int) int64 {
 
 func Solution_sorting_and_greedy(nums[]int)int64 {
     sort.Ints( nums )
-    var curr, res int64
-    curr = int64(nums[0])
-    res = 0
+    var curr, res int64 = int64(nums[0]), -1
     i := 1
     for i < len(nums) {
         if int64(nums[i]) < curr {
@@ -18,9 +16,6 @@ func Solution_sorting_and_greedy(nums[]int)int64 {
         }
         curr = curr + int64(nums[i])
         i++
-    }
-    if res == 0 {
-        res--
     }
     return res
 }
