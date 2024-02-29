@@ -21,12 +21,12 @@ class Solution:
             temp = []
             prev = 0 #-1e9
             for node in dq:
-                isOdd = level % 2 == 0
-                # level odd :: strictly increasing order
-                if node.val % 2 == isOdd or \
-                isOdd and prev > 0 and prev <= node.val or \
-                not isOdd and prev >= node.val:
-                # level even .. decreasing
+                isEven = level % 2 == 0
+                # level even :: strictly increasing order    
+                if node.val % 2 == isEven or \
+                isEven and prev > 0 and prev <= node.val or \
+                not isEven and prev >= node.val:
+                # level odd .. decreasing
                     return False
                 prev = node.val
                 if node.left:
