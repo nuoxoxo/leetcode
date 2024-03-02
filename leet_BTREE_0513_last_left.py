@@ -30,11 +30,10 @@ class Solution:
         def solver(node, level):
             if not node:
                 return
-            if not node.left:
-                nonlocal res, max_depth
-                if max_depth < level:
-                    res = node.val
-                    max_depth = level
+            nonlocal res, max_depth
+            if not node.left and max_depth < level:
+                res = node.val
+                max_depth = level
             solver(node.left, level + 1)
             solver(node.right, level + 1)
         solver( root, 0 )
