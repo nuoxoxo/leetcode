@@ -7,6 +7,14 @@
  * }
  */
 func findBottomLeftValue(root *TreeNode) int {
+    Solutions := []func(*TreeNode)int{
+        BFS, // liked
+        DFS, // 🤔
+    }
+    return Solutions[1/*0*/](root)
+}
+
+func BFS (root *TreeNode) int {
     Q := []*TreeNode{ root }
     res := root.Val
     for len(Q) > 0 {
@@ -28,3 +36,23 @@ func findBottomLeftValue(root *TreeNode) int {
     }
     return res
 }
+
+func DFS (root *TreeNode) int {
+    res := root.Val
+    maxlevel := -1
+    var Solver func( * TreeNode, int )
+    Solver = func( node * TreeNode, level int ) {
+        if node == nil {
+            return
+        }
+        if node.Left == nil && maxlevel < level {
+            res, maxlevel = node.Val, level
+        }
+        Solver(node.Left, level + 1)
+        Solver(node.Right, level + 1)
+    }
+    Solver( root, 1 )
+    return res
+
+}
+
