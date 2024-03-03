@@ -1,21 +1,22 @@
 func sortedSquares(nums []int) []int {
-    n := len(nums)
-    L, R := 0, n - 1
-    dp := make([]int, n) // ie. vi dp(n);
-    for L <= R {
-        n--
-        if abs(nums[L]) < abs(nums[R]) {
-            dp[n] = nums[R] * nums[R]
-            R--
+    N := len(nums)
+    l, r := 0, N - 1
+    res := make([]int, N)
+    for l <= r {
+        N--
+        L, R := abs(nums[l]), abs(nums[r])
+        if L < R {
+            res[N] = R * R
+            r--
         } else {
-            dp[n] = nums[L] * nums[L]
-            L++
+            res[N] = L * L
+            l++
         }
     }
-    return dp
+    return res
 }
 
-func abs(n int) int {
+func abs(n int)int{
     if n > 0 {
         return n
     }
