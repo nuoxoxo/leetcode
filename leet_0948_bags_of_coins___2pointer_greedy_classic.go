@@ -1,20 +1,20 @@
 func bagOfTokensScore(tokens []int, power int) int {
     sort.Ints(tokens)
-    i := 0
-    j := len(tokens) - 1
-    res, cur := 0, 0
-    for i < j + 1 {
-        if tokens[i] < power + 1 {
-            cur += 1;
-            if cur > res {
-                res = cur
+    l := 0
+    r := len(tokens) - 1
+    res, pts := 0, 0
+    for l <= r {
+        if tokens[ l ] < power + 1 {
+            pts += 1;
+            if pts > res {
+                res = pts
             }
-            power -= tokens[i]
-            i++
-        } else if cur > 0 {
-            cur -= 1
-            power += tokens[j]
-            j -= 1
+            power -= tokens[ l ]
+            l++
+        } else if pts > 0 {
+            pts -= 1
+            power += tokens[ r ]
+            r -= 1
         } else {
             break
         }
