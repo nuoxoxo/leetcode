@@ -1,20 +1,20 @@
 class Solution:
     def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
         tokens.sort()
-        cur = 0
-        res = 0
-        i = 0
-        j = len(tokens) - 1
-        while i < j + 1:
-            if tokens[i] < power + 1:
-                cur += 1
-                res = max(res, cur)
-                power -= tokens[i]
-                i += 1
-            elif cur > 0:
-                cur -= 1
-                power += tokens[j]
-                j -= 1
+        N = len(tokens)
+        l, r = 0, N - 1
+        res, pts = 0, 0
+        while l <= r :
+            if tokens[ l ] <= power:
+                pts += 1
+                res = max(res, pts)
+                power -= tokens[ l ]
+                l += 1
+            elif pts > 0:
+                pts -= 1
+                power += tokens[ r ]
+                r -= 1
             else:
+                print('/both escaped')
                 break
         return res
