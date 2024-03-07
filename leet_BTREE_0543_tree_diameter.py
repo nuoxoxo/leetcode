@@ -6,10 +6,10 @@
 #         self.right = right
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        def dive(node, level) -> int:
+        def dive(node, level) -> int: # get arm's length of a single arm
             if not node:
                 return 0
-            L = dive(node.left, level)
+            L = dive(node.left, level) # left arm's length
             R = dive(node.right, level)
             nonlocal res
             res = max(res, L + R)
