@@ -13,16 +13,17 @@ class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
         int res = 0;
-        depth(root, res);
+        dive(root, res);
         return res;
     }
-    int depth (TreeNode * node, int & n) {
+
+    int dive(TreeNode * node, int & res)
+    {
         if (!node)
             return 0;
-        int L = depth(node->left, n);
-        int R = depth(node->right, n);
-        n = L + R > n ? L + R : n;
-        int curr = L > R ? L : R;
-        return 1 + curr;
+        int L = dive(node->left, res);
+        int R = dive(node->right, res);
+        res = max(res, L + R);
+        return max(L, R) + 1;
     }
 };
