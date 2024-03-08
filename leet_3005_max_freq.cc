@@ -1,7 +1,15 @@
 class Solution {
 public:
     using PII = pair<int, int>;
+
     int maxFrequencyElements(vector<int>& nums) {
+        vector<int(*)(vector<int>&)> Solutions {
+            Space_heavy,
+        };
+        return Solutions[0](nums);
+    }
+
+    static int Space_heavy(vector<int>& nums) {
         unordered_map<int, int> D;
         for (int n: nums)
             D[n]++;
