@@ -4,9 +4,30 @@ public:
 
     int maxFrequencyElements(vector<int>& nums) {
         vector<int(*)(vector<int>&)> Solutions {
-            Space_heavy,
+            Best_complexity,
+            // Space_heavy,
         };
         return Solutions[0](nums);
+    }
+
+    static int Best_complexity(vector<int>& nums) {
+        unordered_map<int, int> D;
+        int times = 0, top = -1;
+        for (int & n: nums)
+        {
+            D[n]++;
+            if (D[n] > top)
+            {
+                times = 0;
+                top = D[n];
+            }
+            if (D[n] == top)
+            {
+                times++;
+            }
+        }
+        return top * times;
+    
     }
 
     static int Space_heavy(vector<int>& nums) {
