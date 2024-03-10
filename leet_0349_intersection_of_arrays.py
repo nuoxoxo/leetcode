@@ -2,10 +2,20 @@ class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         return [
             # self.Set_intersection,
-            self.Set_difference,
+            # self.Set_difference,
             # self.Two_pointers,
-
+            self.Using_dict,
         ][ 0 ]( nums1, nums2 )
+
+    def Using_dict(self, n1: List[int], n2: List[int]) -> List[int]:
+        D, res = defaultdict(int), []
+        for n in n1:
+            D[n] += 1
+        for n in n2:
+            if n in D:
+                res.append( n )
+                del D[ n ]
+        return res
 
     def Two_pointers(self, n1: List[int], n2: List[int]) -> List[int]:
         n1.sort()
@@ -32,3 +42,4 @@ class Solution:
 
     def Set_intersection(self, n1: List[int], n2: List[int]) -> List[int]:
         return set(n1) & set(n2)
+
