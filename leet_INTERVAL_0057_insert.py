@@ -1,7 +1,7 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         res = []
-        for i, inter in enumerate(intervals):
+        for inter in intervals:
             newS, newE = newInterval
             s, e = inter
 
