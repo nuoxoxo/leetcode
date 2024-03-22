@@ -6,7 +6,7 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         return [
-            self.Reverse_linked_list
+            self.Reverse_linked_list,
             self.Get_to_the_middle,
         ][0](head)
 
@@ -15,10 +15,10 @@ class Solution:
         rev = None#head#ListNode(head.val)
         while f and f.next:
             f = f.next.next
-            nxt = s.next
-            s.next = rev
-            rev = s
-            s = nxt
+            nxt = s.next # preserve the Next-ptr
+            s.next = rev # reverse this node by re-assigning its Next-pointer
+            rev = s # move rightwards
+            s = nxt # move rightwards
         if f:
             s = s.next
         while rev and s:
