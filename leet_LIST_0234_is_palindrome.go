@@ -5,25 +5,55 @@
  *     Next *ListNode
  * }
  */
-
 func isPalindrome(head *ListNode) bool {
-    arr := []int {}
-    fst := head
-    slw := head
-    for fst != nil && fst.Next != nil {
-        arr = append(arr, slw.Val)
-        fst = fst.Next.Next
-        slw = slw.Next
+
+    Solutions := []func(*ListNode)bool{
+        // Compare_to_half_array,
+        Reverse_linked_list,
     }
-    if fst != nil {
-        slw = slw.Next
+    return Solutions[0](head)
+}
+
+func Reverse_linked_list(head *ListNode) bool {
+    f,s := head, head
+    var rev *ListNode = nil
+    for f != nil && f.Next != nil {
+        f = f.Next.Next
+        nxt := s.Next // save the next pointer for later
+        s.Next = rev // reverse next pointer for this node
+        rev = s // move eastwards
+        s = nxt // move eastwards
     }
-    i := len(arr) - 1
-    for slw != nil {
-        if slw.Val != arr[i] {
+    if f != nil {
+        s = s.Next
+    }
+    for rev != nil && s != nil {
+        if rev.Val != s.Val {
             return false
         }
-        slw = slw.Next
+        rev = rev.Next
+        s = s.Next
+    }
+    return true
+}
+
+func Compare_to_half_array(head *ListNode) bool {
+    f,s := head, head
+    half := []int{}
+    for f != nil && f.Next != nil {
+        half = append(half, s.Val)
+        f = f.Next.Next
+        s = s.Next
+    }
+    if f != nil {
+        s = s.Next
+    }
+    i := len(half) - 1
+    for s != nil {
+        if s.Val != half[i] {
+            return false
+        }
+        s = s.Next
         i--
     }
     return true
