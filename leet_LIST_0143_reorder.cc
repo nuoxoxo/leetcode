@@ -10,7 +10,17 @@
  */
 class Solution {
 public:
-    void reorderList(ListNode* head) {
+    void reorderList(ListNode* head)
+    {
+        vector<void(*)(ListNode *)> Solutions {
+            Extra_space,
+        };
+        Solutions[0](head);
+    }
+
+
+    static void Extra_space (ListNode * head)
+    {
         if ( ! head || ! head->next )
             return ;
         std::deque<ListNode *> dq;
