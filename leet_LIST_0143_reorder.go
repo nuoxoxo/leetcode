@@ -6,7 +6,51 @@
  * }
  */
 func reorderList(head *ListNode)  {
-    if head == nil || head.Next == nil || head.Next.Next == nil {
+
+    Solutions := []func(*ListNode) {
+        Using_reverse_linked_list,
+    }
+    Solutions[0](head)
+}
+
+func Using_reverse_linked_list(head *ListNode)  {
+    if head == nil || head.Next == nil {
+        return
+    }
+    f, s := head, head
+    for f != nil && f.Next != nil {
+        f = f.Next.Next
+        s = s.Next
+    }
+    var end *ListNode = s
+    var nxt *ListNode
+    nxt = s.Next
+    s.Next = nil
+    s = nxt
+    // fmt.Println("/cut", s.Val) // OK
+    for s != nil {
+        nxt = s.Next
+        s.Next = end
+        end = s
+        s = nxt
+    }
+    s = head
+    // fmt.Println(end.Val, end.Next.Val) // OK
+    for s != nil && end != nil && s != end && s.Next != end {
+        // fmt.Println(s.Val, end.Val)
+        nxt = s.Next
+        if nxt == nil {
+            break
+        }
+        new_node := &ListNode{Val:end.Val, Next:nxt}
+        s.Next = new_node
+        s = nxt//s.Next.Next
+        end = end.Next
+    }
+}
+
+func Extra_space(head *ListNode)  {
+    if head == nil || head.Next == nil {
         return
     }
     dq := []*ListNode{}
