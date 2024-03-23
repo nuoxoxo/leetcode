@@ -3,33 +3,35 @@
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode() : val(0), next(nullp) {}
+ *     ListNode(int x) : val(x), next(nullp) {}
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        if ( ! head || ! head->next || ! head->next->next)
+        if ( ! head || ! head->next )
             return ;
-        std::deque< ListNode * > dq;
-        ListNode * ptr = head;
-        int len = 0;
-        while (ptr) {
-            dq.push_back( ptr );
-            ptr = ptr->next;
-            len++;
+        std::deque<ListNode *> dq;
+        ListNode * p = head;
+        int N = 0;
+        while (p)
+        {
+            dq.push_back( p );
+            p = p->next;
+            ++N;
         }
         int i = -1;
-        ptr = head;
-        while (++i < len / 2) {
+        p = head;
+        while (++i < N / 2)
+        {
             ListNode * node = dq.back();
-            node->next = ptr->next;
-            ptr->next = node;
-            ptr = ptr->next->next;
             dq.pop_back();
+            node->next = p->next;
+            p->next = node;
+            p = p->next->next;
         }
-        ptr->next = nullptr;
+        p->next = nullptr;
     }
 };
