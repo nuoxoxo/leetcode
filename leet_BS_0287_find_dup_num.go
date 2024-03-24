@@ -1,7 +1,7 @@
 func findDuplicate(nums []int) int {
     Solutions := []func([]int) int {
-        // Binary_search,
-        Naive,
+        Binary_search,
+        // Naive,
     }
     return Solutions[0](nums)
 }
