@@ -1,25 +1,48 @@
-class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
+func exist(board [][]byte, word string) bool {
 
-        R, C = len(board), len(board[0])
-        N = len(word)
-        dr, dc = [-1, 1, 0, 0], [0, 0, -1, 1]
-        seen = [[False for _ in range(C)] for _ in range(R)]
+    R, C := len(board), len(board[0])
+    seen := make([][]bool, R)
+    for i := range seen {
+        seen[i] = make([]bool, C)
+    }
+    r := 0
+    for r < R {
+        c := 0
+        for c < C {
+            if dfs(board, r, c, word, 0, seen) {
+                return true
+            }
+            c++
+        }
+        r++
+    }
+    return false
+}
 
-        def dfs(g, r, c, s, idx, seen) -> bool:
-            if idx > N - 1:
-                return True
-            if not (-1 < r < R and -1 < c < C and not seen [r][c] and g[r][c] == s[idx]):
-                return False
-            seen[r][c] = True
-            for i in range(4):
-                rr, cc = r + dr[i], c + dc[i]
-                if dfs(g, rr, cc, s, idx + 1, seen):
-                    return True
-            seen[r][c] = False
-            return False
-        for r in range(R):
-            for c in range(C):
-                if dfs(board, r, c, word, 0, seen):
-                    return True
-        return False
+func dfs(g [][]byte, r, c int, s string, idx int, seen [][]bool) bool {
+
+    if idx == len(s) {
+        return true
+    }
+    R, C := len(g), len(g[0])
+    if r < 0 || r > R - 1 || c < 0 || c > C - 1 || g[r][c] != s[idx] || seen[r][c] {
+        return false
+    }
+
+    seen[r][c] = true
+    defer func() { seen[r][c] = false }()
+
+    dr := []int{-1, 1, 0, 0}
+    dc := []int{0, 0, 1, -1}
+    i := 0
+    for i < 4 {
+        nr, nc := r+dr[i], c+dc[i]
+        if dfs(g, nr, nc, s, idx+1, seen) {
+            return true
+        }
+        i++
+    }
+
+    // seen[r][c] = false // commented when using `defer`
+    return false
+}
