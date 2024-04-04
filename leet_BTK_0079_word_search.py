@@ -1,20 +1,25 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        for x in range(len(board)):
-            for y in range(len(board[0])):
-                if self.DFS(board, word, 0, x, y):
+
+        R, C = len(board), len(board[0])
+        N = len(word)
+        dr, dc = [-1, 1, 0, 0], [0, 0, -1, 1]
+        seen = [[False for _ in range(C)] for _ in range(R)]
+
+        def dfs(g, r, c, s, idx, seen) -> bool:
+            if idx > N - 1:
+                return True
+            if not (-1 < r < R and -1 < c < C and not seen [r][c] and g[r][c] == s[idx]):
+                return False
+            seen[r][c] = True
+            for i in range(4):
+                rr, cc = r + dr[i], c + dc[i]
+                if dfs(g, rr, cc, s, idx + 1, seen):
+                    return True
+            seen[r][c] = False
+            return False
+        for r in range(R):
+            for c in range(C):
+                if dfs(board, r, c, word, 0, seen):
                     return True
         return False
-    def DFS(self, board: List[List[str]], word:str, i: int, x: int, y: int) -> bool:
-        if i == len(word):
-            return True
-        if x < 0 or y < 0 or x > len(board) - 1 or y > len(board[0]) - 1 or word[i] != board[x][y] :
-            return False
-        board[x][y] = chr(0)
-        found = (
-            self.DFS(board, word, i + 1, x + 1, y) or
-            self.DFS(board, word, i + 1, x - 1, y) or
-            self.DFS(board, word, i + 1, x, y + 1) or
-            self.DFS(board, word, i + 1, x, y - 1))
-        board[x][y] = word[i]
-        return found
