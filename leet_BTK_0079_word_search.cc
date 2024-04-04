@@ -1,39 +1,45 @@
-class   Solution
-{
-
-private:
-    int     rows, cols;
-
+class Solution {
 public:
-    bool    exist(vector<vector<char>>& board, string word)
+
+    int dr[4] = {-1, 1, 0, 0};
+    int dc[4] = {0, 0, 1, -1};
+
+    bool exist(vector<vector<char>>& board, string word)
     {
-            rows = (int) board.size();
-            cols = (int) board[0].size();
-            if (!board.size()) return (false);
-            for (int i = 0; i < rows; i++)
+        int R = (int) board.size(), C = (int) board[0].size();
+        vector<vector<bool>> seen(R, vector<bool>(C, false));
+        int r = -1, c, i;
+        while (++r < R)
+        {
+            c = -1;
+            while (++c < C)
             {
-                for (int j = 0; j < cols; j++)
-                    if (dfs(board, word, 0, i, j))  return (true);
+                i = -1;
+                if (dfs(board, r, c, word, 0, seen))
+                    return true;
             }
-            return (false);
+        }
+        return false;
     }
 
-    bool    dfs(vector<vector<char>> &board, string &word, int i, int x, int y)
+    bool dfs(vector<vector<char>>& g, int r, int c, string &s, int idx, vector<vector<bool>> & seen)
     {
-        bool    found;
-        char    temp;
-
-        if (x < 0 || x == rows || y < 0 || y == cols || word[i] != board[x][y])
-            return (false);
-        if (i == (int) word.length() - 1)
-            return (true);
-        temp = board[x][y];
-        board[x][y] = 0;
-        found = dfs(board, word, i + 1, x + 1, y) ||
-                dfs(board, word, i + 1, x - 1, y) ||
-                dfs(board, word, i + 1, x, y + 1) ||
-                dfs(board, word, i + 1, x, y - 1);
-        board[x][y] = temp;
-        return (found);
+        int N = s.length();
+        if (idx > N - 1)
+            return true;
+        int R = (int) g.size(), C = (int) g[0].size();
+        if (r < 0 || r > R - 1 || c < 0 || c > C - 1 || g[r][c] != s[idx] || seen[r][c])
+            return false;
+        seen[r][c] = true;
+        int i = -1;
+        while (++i < 4)
+        {
+            int rr = r + dr[i], cc = c + dc[i];
+            if (dfs(g, rr, cc, s, idx + 1, seen))
+                return true;
+        }
+        seen[r][c] = false;
+        return false;
     }
+
 };
