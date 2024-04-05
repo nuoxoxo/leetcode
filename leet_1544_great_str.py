@@ -2,8 +2,18 @@ class Solution:
     def makeGood(self, s: str) -> str:
         return [
             # self.Using_stack_like,
-            self.Linear_scan_and_remove,
+            # self.Linear_scan_and_remove,
+            self.Best_string_based_soln,
         ][0](s)
+
+    def Best_string_based_soln(self, s: str) -> str:
+        res = ''
+        for c in s:
+            if res != '' and c != res[-1] and c.lower() == res[-1].lower():
+                res = res[:-1]
+            else:
+                res += c
+        return res
 
     def Linear_scan_and_remove(self, s: str) -> str:
         dq = list(s)
