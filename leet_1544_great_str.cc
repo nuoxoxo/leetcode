@@ -4,9 +4,25 @@ public:
     {
         vector<string(*)(string)> Solutions {
             // Push_first,
-            Scan_first,
+            // Scan_first,
+            String_based_fastest_approach,
         };
         return Solutions[0](s);
+    }
+
+    // BEST Soln
+
+    static string String_based_fastest_approach(string s)
+    {
+        string res;
+        for (char c: s)
+        {
+            if (!res.empty() && (c ^ res.back()) == 32)
+                res.pop_back();
+            else
+                res.push_back(c);
+        }
+        return res;
     }
 
     static string Scan_first(string s)
@@ -14,8 +30,7 @@ public:
         deque<char> dq;
         for (char c: s)
         {
-            int N = dq.size();
-            if (N && (c ^ dq[N - 1]) == 32)
+            if (!dq.empty() && (c ^ dq.back()) == 32)
                 dq.pop_back();
             else
                 dq.push_back(c);
