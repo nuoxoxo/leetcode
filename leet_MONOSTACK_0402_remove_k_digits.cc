@@ -1,49 +1,38 @@
-/* ******************************************** */
-/*                                              */
-/*              \\             /`/``            */
-/*              ~\o o_       0 0\               */
-/*              / \__)      (u  ); _  _         */
-/*       / \/ \/  /           \  \/ \/ \        */
-/*      /(   . . )            (         )\      */
-/*     /  \_____/              \_______/  \     */
-/*         []  []               [[] [[]    *.   */
-/*         []] []]              [[] [[]         */
-/*                                              */
-/* ************************************ nuo *** */
-
 class Solution {
 public:
     string removeKdigits(string num, int k)
     {
-        string  s = "";
-        int     i = -1;
-        int     len = num.length();
 
-        while (++i < len)
+        cout << "Solution/ Monotonic stack \n";
+
+        int N = num.size();
+        if (k >= N)
+            return "0";
+        vector<char> monostack;
+        for (char c: num)
         {
-            while(!s.empty() && s.back() > num[i] && k)
+            while (!monostack.empty() && monostack[monostack.size() - 1] > c && k)
             {
-                s.pop_back();
+                monostack.pop_back();
                 k--;
             }
-            s += num[i];
-            // cout << s << endl;
+            monostack.push_back(c);
         }
-
-        while (!s.empty() && k) // in case k is not down to 0
+        while (!monostack.empty() && k)
         {
-            s.pop_back();
+            monostack.pop_back();
             k--;
         }
-        i = 0;
-        while (s[i] == '0')
-            i++;
-        // cout << i << ' ' << s << endl;
-
-        if (len <= i)   return "0";
-        while (i > 0)   s.erase(0, 1), i--;
-        // cout << s << endl;
-
-        return s == "" ? "0" : s ;
+        if (monostack.empty())
+            return "0";
+        int left0 = 0;
+        while (left0 < monostack.size() && monostack[left0] == '0' && ++left0) ;;
+        string res;
+        int i = left0 - 1;
+        while (++i < monostack.size())
+            res += monostack[i];
+        if (res == "")
+            return "0";
+        return res;
     }
 };
