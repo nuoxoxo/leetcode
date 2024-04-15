@@ -1,18 +1,3 @@
-class Solution {
-public:
-    int sumNumbers(TreeNode* root)
-    {
-        return (sumBranch(root, 0));
-    }
-
-    int sumBranch(TreeNode *root, int n)
-    {
-        if (!root)                          return (NULL);
-        if (!root->left && !root->right)    return (n * 10 + root->val);
-        return (sumBranch(root->right, n * 10 + root->val) + sumBranch(root->left, n * 10 + root->val));
-    }
-};
-
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -24,3 +9,25 @@ public:
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+class Solution {
+public:
+    int sumNumbers(TreeNode* root)
+    {
+        return (DFS(root, 0));
+    }
+
+    int DFS(TreeNode *node, int curr)
+    {
+        if (!node)
+        {
+            return 0;
+        }
+        curr = 10 * curr + node->val;
+        if (!node->left && !node->right)
+        {
+            return curr;
+        }
+        return DFS(node->left, curr) + DFS(node->right, curr);
+
+    }
+};
