@@ -9,35 +9,104 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
 class Solution {
 public:
-    TreeNode* addOneRow(TreeNode* node, int val, int depth)
+    TreeNode* addOneRow(TreeNode* root, int val, int depth)
     {
-        TreeNode    *temp1;
-        TreeNode    *temp2;
-
-        if (! node)
-            return (NULL);
-        if (depth == 1)
-        {
-            temp1 = new TreeNode(val);
-            temp1->left = node;
-            return (temp1);            
-        }
-        if (depth == 2)
-        {
-            temp1 = new TreeNode(val);
-            temp2 = new TreeNode(val);
-            temp1->left = node->left;
-            temp2->right = node->right;
-            node->left = temp1;
-            node->right = temp2;
-            return (node);
-        }
-        depth--;
-        node->left = addOneRow(node->left, val, depth);
-        node->right = addOneRow(node->right, val, depth);
-        return (node);
+        vector< TreeNode * (*) (TreeNode *, int, int) > Solutions {
+            // DFS,
+            BFS,
+        };
+        return Solutions[ 0 ]( root, val, depth );
     }
+
+    // Rule
+    //  for each not null node at depth, make 2 nodes of val : / \  
+    //  1 - each is subtree of the old root 
+    //  2 - each inherits either left or right subtree ...
+    //      at either its left or its right (Important!)
+
+    // Bottom case : depth == 1
+    //  the whole tree is LEFT subtree of new root node of val
+
+    static TreeNode * DFS( TreeNode * root, int val, int D )
+    {
+        if ( ! root)
+            return nullptr;
+        if (D == 1) // old tree is Left subtree of new root node of val
+        {
+            TreeNode * node = new TreeNode (val);
+            node->left = root;
+            return node;
+        }
+        if (D == 2)
+        {
+            TreeNode * L = new TreeNode(val);
+            TreeNode * R = new TreeNode(val);
+            L->left = root->left; // inherit
+            R->right = root->right;
+            root->left = L; // new L-R pair as subtree of old root
+            root->right = R;
+            return root;
+        }
+
+        // free from bottom cases
+        //  - recursively getting to depth
+
+        root->left = DFS( root->left, val, D - 1 );
+        root->right = DFS( root->right, val, D - 1 );
+
+        return root;
+
+    }
+
+    static TreeNode * BFS( TreeNode * root, int val, int D )
+    {
+        assert(root);
+        if (D == 1)
+        {
+            TreeNode * node = new TreeNode (val);
+            node->left = root;
+            return node;
+        }
+        deque<TreeNode *> Q {root};
+        while ( ! Q.empty())
+        {
+            D--;
+            if ( ! D)
+            {
+                return root;
+            }
+            TreeNode *L, *R;
+            int i = Q.size();
+            while (--i > -1)
+            {
+                TreeNode * node = Q.front();
+                Q.pop_front();
+
+                if (D == 1)
+                {
+                    L = new TreeNode(val);
+                    R = new TreeNode(val);
+                    L->left = node->left; // inherit
+                    R->right = node->right;
+                    node->left = L; // new L-R pair as subtree of old root
+                    node->right = R;
+                }
+                else
+                {
+                    if (node->left)
+                    {
+                        Q.push_back(node->left);
+                    }
+                    if (node->right)
+                    {
+                        Q.push_back(node->right);
+                    }
+                }
+            }
+        }
+        return root;
+    }
+
 };
