@@ -8,10 +8,30 @@
  */
 func rangeSumBST(root *TreeNode, low int, high int) int {
     Solutions := []func(* TreeNode, int, int) int {
-        BFS,
+        inorder,
+        // BFS,
         // DFS,
     }
     return Solutions[ 0 ]( root, low, high )
+}
+
+func inorder(root *TreeNode, low int, high int) int {
+
+    res := 0
+    var traverse func( * TreeNode )
+    traverse = func(node * TreeNode) {
+        if node == nil {
+            return
+        }
+        traverse(node.Left)
+        n := node.Val
+        if low <= n && n <= high {
+            res += n
+        }
+        traverse(node.Right)
+    }
+    traverse(root)
+    return res
 }
 
 func BFS(root *TreeNode, low int, high int) int {
