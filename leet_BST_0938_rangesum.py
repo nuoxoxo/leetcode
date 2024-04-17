@@ -8,7 +8,8 @@ class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
         return [
             # self.BFS,
-            self.DFS
+            # self.DFS
+            self.Inorder,
         ][ 0 ]( root, low, high )
 
     def BFS(self, root: Optional[TreeNode], low: int, high: int) -> int:
@@ -24,6 +25,19 @@ class Solution:
             if node.right:
                 Q.append(node.right)
         return sum(res)
+
+    def Inorder(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        res = 0
+        def traverse(node) -> None:
+            if not node:
+                return
+            traverse(node.left)
+            if low <= node.val <= high:
+                nonlocal res
+                res += node.val
+            traverse(node.right)
+        traverse(root)
+        return res
 
     def DFS(self, root: Optional[TreeNode], low: int, high: int) -> int:
         res = 0
