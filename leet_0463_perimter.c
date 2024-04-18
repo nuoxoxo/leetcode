@@ -2,14 +2,14 @@ typedef int (* functions) (int **, int, int*);
 
 int Math(int **, int, int *);
 int BruteForce_Iterative(int **, int, int *);
-int BruteForce_Recursive(int **, int, int *);
+int BruteForce_Iterative_Alt(int **, int, int *);
 
 int islandPerimeter(int** grid, int gridSize, int* gridColSize) {
 
     functions Solutions [] = {
         Math,
         BruteForce_Iterative,
-        BruteForce_Recursive,
+        BruteForce_Iterative_Alt,
     };
     return Solutions[0]((int**) grid, gridSize, (int*) gridColSize);
 }
@@ -63,7 +63,7 @@ int BruteForce_Iterative(int** G, int gridSize, int* gridColSize) {
 
 int countNeighbors(int**, int, int*, int, int);
 int hasOneNeighbor(int**, int, int*, int, int);
-int BruteForce_Recursive(int** G, int gridSize, int* gridColSize) {
+int BruteForce_Iterative_Alt(int** G, int gridSize, int* gridColSize) {
 
     int R = gridSize, C = *gridColSize;
     int res = 0;
