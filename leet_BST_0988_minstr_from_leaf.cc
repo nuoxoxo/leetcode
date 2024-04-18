@@ -13,27 +13,36 @@ class Solution {
 public:
     string smallestFromLeaf(TreeNode* root)
     {
-        string res, curr;
-        DFS(root, curr, res);
+        vector<string(*)(TreeNode *)> Solutions {
+            DFS,
+        };
 
-        return res;
+        return Solutions[0](root);
     }
 
-    void DFS(TreeNode * node, string curr, string & res)
+    static string DFS(TreeNode * root)
     {
-        if ( ! node)
-            return ;
-        string EMPTY = "";
-        curr = EMPTY + (char)(node->val + 'a') + curr;
-        if ( ! node->left && ! node->right)
+        string res;
+        string curr;
+
+        std::function<void(TreeNode *, string, string &)> recurse = [&](TreeNode * node, string curr, string & res)
         {
-            if (res == "" || res > curr)
+            if ( ! node)
+                return ;
+            string EMPTY = "";
+            curr = EMPTY + (char)(node->val + 'a') + curr;
+            if ( ! node->left && ! node->right)
             {
-                res = curr;
+                if (res == "" || res > curr)
+                {
+                    res = curr;
+                }
+                return ;
             }
-            return ;
-        }
-        DFS(node->left, curr, res);
-        DFS(node->right, curr, res);
+            recurse (node->left, curr, res);
+            recurse (node->right, curr, res);
+        };
+        recurse (root, curr, res);
+        return res;
     }
 };
