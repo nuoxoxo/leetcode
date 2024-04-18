@@ -4,7 +4,7 @@ public:
     int islandPerimeter(vector<vector<int>>& grid)
     {
         vector<int(*)(vvi &)> Solutions {
-            // Bruteforce_interative,
+            // Bruteforce_iterative,
             // Bruteforce_recursive,
             Math,
         };
@@ -70,7 +70,7 @@ public:
         return res;
     }
 
-    static int Bruteforce_interative(vvi& G)
+    static int Bruteforce_iterative(vvi& G)
     {
         int dr[4] = {1,0,-1, 0};
         int dc[4] = {0,1, 0,-1};
@@ -80,7 +80,7 @@ public:
         int r = -1, c;
         while (++r < R) {
             c = -1;
-            while (++c < R) {
+            while (++c < C) {
                 if (G[r][c]) {
                     int i = -1;
                     while (++i < 4) {
