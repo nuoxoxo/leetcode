@@ -7,8 +7,8 @@ class Solution:
     def BFS(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
         if source == destination:
             return True
-        END = set()
-        END.add(source)
+        Seen = set()
+        Seen.add(source)
         Q = deque()
         Q.append(source)
         ADJ = defaultdict(list)
@@ -21,8 +21,8 @@ class Solution:
             for v in ADJ[u]:
                 if v == destination:
                     return True
-                if v not in END:
+                if v not in Seen:
                     Q.append(v)
-                    END.add(v)
+                    Seen.add(v)
         return False
 
