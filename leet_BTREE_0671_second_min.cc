@@ -53,7 +53,6 @@ public:
         long long res[2] = {2147483648, 2147483648};
 
         deque<TreeNode *> Q {root};        
-        bool flag0 = false, flag1 = false;
         while (!Q.empty())
         {
             TreeNode * node = Q.front();
