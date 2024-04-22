@@ -1,5 +1,10 @@
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
+        return [
+            self.BFS,
+        ][0](deadends, target)
+
+    def BFS(self, deadends: List[str], target: str) -> int:
         code = '0000'
         nogo = set(deadends)
         if target in nogo or code in nogo:
