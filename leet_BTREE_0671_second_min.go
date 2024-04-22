@@ -11,8 +11,36 @@ func findSecondMinimumValue(root *TreeNode) int {
     Solutions := []func(*TreeNode) int {
         // BFS_with_set,
         BFS_economic,
+        // DFS,
     }
     return Solutions[0](root)
+}
+
+func DFS(root * TreeNode) int {
+
+    res0 := math.MaxUint32
+    res1 := math.MaxUint32
+
+    var recurse func(*TreeNode)
+    recurse = func(node * TreeNode) {
+        if node == nil {
+            return
+        }
+        n := node.Val
+        if n < res0 {
+			res1 = res0
+			res0 = n
+		} else if n != res0 && n < res1 {
+			res1 = n
+		}
+        recurse(node.Left)
+        recurse(node.Right)
+    }
+    recurse( root )
+    if res1 != math.MaxUint32 {
+		return res1
+	}
+	return -1
 }
 
 func BFS_economic(root * TreeNode) int {
