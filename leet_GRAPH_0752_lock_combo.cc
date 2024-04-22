@@ -1,7 +1,7 @@
 class Solution {
 public:
-    int openLock(vector<string>& deadends, string target) {
-
+    int openLock(vector<string>& deadends, string target)
+    {
         vector<int(*)(vector<string> &, string)> Solutions {
             BFS,
         };
@@ -21,16 +21,18 @@ public:
         deque<string> Q {code};
         unordered_map<string, int> steps;
 
-        while (!Q.empty()) {
+        while (!Q.empty())
+        {
             code = Q.front();
             Q.pop_front();
-            if (code == target) {
+            if (code == target)
                 return steps[code];
-            }
             int i = -1;
-            while (++i < 4) {
+            while (++i < 4)
+            {
                 int n = code[i] - '0';
-                for (int offset: {-1, 1}) {
+                for (int offset: {-1, 1})
+                {
                     char digit = (char) (((n + offset + 10) % 10) + '0');
                     string _new = code;
                     _new[i] = digit; // string is mutable in cpp
