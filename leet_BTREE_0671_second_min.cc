@@ -15,10 +15,10 @@ public:
     {
         vector<int (*) (TreeNode *)> Solutions {
             // BFS_with_set,
-            BFS_economic,
+            // BFS_economic,
             // DFS,
         };
-        return Solutions[0](root);
+        return Solutions[1](root);
     }
 
     static int DFS(TreeNode * root)
