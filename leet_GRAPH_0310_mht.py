@@ -21,8 +21,8 @@ class Solution:
             if degrees[i] == 1:
                 res.append(i)
                 degrees[i] -= 1
-        print('res/', res)
-        print('deg/', degrees)
+        print('res - init/', res)
+        print('deg - init/', degrees)
         while True:
             # remove leaves until only the centroids ie. roots of MHTs remain
             #   - it is Greedy
@@ -38,6 +38,7 @@ class Solution:
             if not new_leaves:
                 break
             print('res/', new_leaves)
+            print('deg/', degrees)
             res = new_leaves
         return res
 
