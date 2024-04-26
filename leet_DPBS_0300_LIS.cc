@@ -1,41 +1,85 @@
 class Solution {
 public:
-    int lengthOfLIS(vector<int>& nums)
-    {
-        vector<int>     temp;
-        int             L, R, mid, len;
+    #define vi vector<int>
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int(*)(vi&)> Solutions {
+            // Binary_search, // fast
+            // Lower_bound, // fast
+            nSquare,
+        };
+        return Solutions[0](nums);
+    }
 
+    static int Lower_bound(vi& nums)
+    {
+        vi lens;
         for (int n: nums)
         {
-            len = (int) temp.size();
-            if (! len || n > temp[len - 1])
+            auto it = std::lower_bound(lens.begin(), lens.end(), n);
+            if (it == lens.end())
+                lens.push_back(n);
+            else
+                *it = n;
+        }
+        return (int)lens.size();
+    }
+
+    static int Binary_search(vi& nums)
+    {
+        vi lens;
+        for (int n: nums)
+        {
+            int N = lens.size();
+            if (lens.empty() || lens[N - 1] < n)
             {
-                temp.push_back(n);
-                // printer(temp);
+                lens.push_back(n);
             }
             else
             {
-                L = 0;
-                R = len - 1;
+                int L = 0;
+                int R = N - 1;
                 while (L < R)
                 {
-                    mid = (R - L) / 2 + L;
-                    if (temp[mid] < n)
+                    int mid = (R - L) / 2 + L;
+                    if (lens[mid] < n)
                         L = mid + 1;
                     else
                         R = mid;
                 }
-                temp[R] = n;
+                lens[R] = n;
             }
         }
-        return ((int) temp.size());
+        return (int)lens.size();
     }
 
-    void    printer(vector<int> temp)
+    static int nSquare(vi& nums)
     {
-        int     i = -1;
-        while (++i < (int) temp.size())
-            cout << temp[i] << ' ';
-        cout << endl;
+        int N = nums.size();
+        long long INF = 2147483648;
+        vector<long long> lens(N + 1, INF);
+        lens[0] = -INF;
+        for (int n: nums)
+        {
+            int i = -1;
+            while (++i < N + 1)
+            {
+                if (lens[i] < n)
+                {
+                    if (lens[i + 1] > n)
+                        lens[i + 1] = n;
+                }
+            }
+        }
+        int res = -1;
+        int i = N + 1;
+        while (--i > -1)
+        {
+            if (lens[i] != INF)
+            {
+                res = i;
+                break ;
+            }
+        }
+        return res;
     }
 };
