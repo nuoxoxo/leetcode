@@ -3,7 +3,33 @@ class Solution:
         return [
             self.dfs_using_lru_cache,
             self.dfs_using_DIY_cache,
+            self.BFS, # slow
         ][0](ring, key)
+
+    def BFS(self, ring: str, key: str) -> int:
+        ringsize, keysize = len(ring), len(key)
+        start = (0, 0, 0)
+        Q = deque()
+        Q.append(start)
+        seen = set()
+        seen.add((0, 0))
+        while Q:
+            iring, ikey, steps = Q.popleft()
+            if ikey == keysize:
+                return steps
+            if ring[iring] == key[ikey]:
+                nxt = (iring, ikey + 1, steps + 1)
+                Q.append(nxt)
+                continue
+            L = (iring - 1) % ringsize
+            R = (iring + 1) % ringsize
+            if (L, ikey) not in seen:
+                Q.append((L, ikey, steps + 1))
+                seen.add((L, ikey))
+            if (R, ikey) not in seen:
+                Q.append((R, ikey, steps + 1))
+                seen.add((R, ikey))
+        assert False
 
     def dfs_using_DIY_cache(self, ring: str, key: str) -> int:
         # match each char in RING to its index(es) which can be several
