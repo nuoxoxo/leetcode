@@ -33,18 +33,16 @@ public:
         int r = 0;
         while (++r < R) {
             long long min_val = INF, second_min_val = INF;
-            int min_idx = -1, second_min_idx = -1;
+            int min_idx = -1;
             c = -1;
             while (++c < C) {
                 if (dp[r - 1][c] < min_val) {
                     // branched out (1) - upd. min val if a smaller one is found
-                    second_min_idx = min_idx;
                     second_min_val = min_val;
                     min_val = dp[r - 1][c];
                     min_idx = c;
                 } else if (dp[r - 1][c] < second_min_val) {
                     // branched out (2) - when `min_val < PreviousRow[c] < second_min_val`
-                    second_min_idx = c;
                     second_min_val = dp[r - 1][c];
                 }
             }
