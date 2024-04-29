@@ -24,17 +24,17 @@ class Solution:
         for r in range(1, R):
             # keep track of min and 2nd min values in the PREV row
             min_val, second_min_val = INF, INF
-            min_idx, second_min_idx = -1, -1
+            min_idx = -1#, second_min_idx = -1, -1
             for c in range(C):
                 if dp[r - 1][c] < min_val:
                     # branched out (1) - upd. min val if a smaller one is found
-                    second_min_idx = min_idx
+                    # second_min_idx = min_idx
                     second_min_val = min_val
                     min_val = dp[r - 1][c]
                     min_idx = c
                 elif dp[r - 1][c] < second_min_val:
                     # branched out (2) - when `min_val < PreviousRow[c] < second_min_val`
-                    second_min_idx = c
+                    # second_min_idx = c
                     second_min_val = dp[r - 1][c]
             # now upd. the current row while minding the adj. index
             for c in range(C):
