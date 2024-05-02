@@ -5,7 +5,7 @@ class Solution:
         ][0](queries, dictionary)
 
 def Bruteforce(queries: List[str], dictionary: List[str]) -> List[str]:
-    def diff(L: str, R: str) -> int:
+    def hamming(L: str, R: str) -> int:
         if L == R:
             return True
         if len(L) != len(R):
@@ -18,7 +18,7 @@ def Bruteforce(queries: List[str], dictionary: List[str]) -> List[str]:
     res = []
     for q in queries:
         for d in dictionary:
-            if diff(q, d) < 3:
+            if hamming (q, d) < 3:
                 res.append(q)
                 break
     return res
