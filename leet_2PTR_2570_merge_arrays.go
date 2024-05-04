@@ -23,7 +23,7 @@ func mergeArrays(nums1 [][]int, nums2 [][]int) [][]int {
         i++
     }
     for j < n2 {
-        res = append(res, []int{nums2[i][0], nums2[i][1]})
+        res = append(res, []int{nums2[j][0], nums2[j][1]})
         j++
     }
     return res
