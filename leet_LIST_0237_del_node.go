@@ -10,7 +10,6 @@
 //  and it is guaranteed the given node is not the tail node
 
 func deleteNode(node *ListNode) {
-    temp := node
-    temp.Val = node.Next.Val
-    temp.Next = node.Next.Next
+    node.Val = node.Next.Val
+    node.Next = node.Next.Next
 }
