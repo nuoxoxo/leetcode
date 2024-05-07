@@ -18,8 +18,9 @@ class Solution:
         _head = node
         while num > 0:
             node.val = num % 10
-            node.next = ListNode()
-            node = node.next
+            if num // 10 != 0:
+                node.next = ListNode()
+                node = node.next
             num //= 10
         # reverse
         _prev, _next = None, None
@@ -30,6 +31,6 @@ class Solution:
             _prev = node
             _head = _prev # track head
             node = _next
-        return _head.next
+        return _head
 
 
