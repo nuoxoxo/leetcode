@@ -16,7 +16,7 @@ class Solution:
         x1 = 0111
         x2 = 1111 -> 15
         """
-        n -= 1 # 
+        n -= 1 
         N = [*bin(n)[2:]]
         Xreversed = [*bin(x)[2:][::-1]]
         # print(N, Xreversed)
