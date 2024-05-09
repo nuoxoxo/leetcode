@@ -13,7 +13,7 @@ def Binary_search_precalc(happiness: List[int], k: int) -> int:
         diff = (k - 1) * k // 2
         return sumK - diff
     res = 0
-    for i, n in enumerate(happiness):
+    for i in range(len(happiness)):
         temp = happiness[i] - i
         if temp < 1:
             return res
