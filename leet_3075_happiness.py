@@ -2,8 +2,23 @@ class Solution:
     def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
         return [
             # Popped_sorted_list,
-            Constant_space,
+            # Constant_space,
+            Binary_search_precalc,
         ][0](happiness, k)
+
+def Binary_search_precalc(happiness: List[int], k: int) -> int:
+    happiness.sort(reverse=True)
+    if happiness[k - 1] - (k - 1) > -1:
+        sumK = sum(happiness[:k])
+        diff = (k - 1) * k // 2
+        return sumK - diff
+    res = 0
+    for i, n in enumerate(happiness):
+        temp = happiness[i] - i
+        if temp < 1:
+            return res
+        res += temp
+    return res
 
 def Constant_space(happiness: List[int], k: int) -> int:
     happiness.sort()
