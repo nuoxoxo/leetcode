@@ -1,7 +1,9 @@
 func buildArray(nums []int) []int {
-    var r [] int
-    for i := 0; i < len(nums); i++ {
-        r = append(r, nums[nums[i]])
+
+    res := []int{}
+    for n := range nums {
+        // assert -1 < n < N
+        res = append(res, nums[nums[n]])
     }
-    return r
+    return res
 }
