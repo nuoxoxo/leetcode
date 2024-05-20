@@ -14,7 +14,7 @@ public:
         long long  res = tt;
         int N = nums.size();
         int i = 0;
-        while (i + 1 < N)
+        while (i < N - 1)
         {
             tt += updates[i] + updates[i + 1];
             res = max(res, tt);
