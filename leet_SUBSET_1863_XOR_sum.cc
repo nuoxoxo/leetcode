@@ -14,6 +14,32 @@ public:
         total = 28
         */
 
+        vector<int(*)(vector<int> &)> Solutions {
+
+            // iterative_bruteforce,
+            recursive,
+        };
+
+        return Solutions[0](nums);
+    }
+
+
+    static int recursive (vector<int> & nums)
+    {
+        int N = nums.size();
+
+        std::function<int(int, int)> Recurse = [&](int idx, int curr) {
+            if (idx == N)
+                return curr;
+            return Recurse(idx + 1, curr)
+                + Recurse(idx + 1, curr ^ nums[idx]);
+        };
+        return Recurse(0, 0);
+    }
+
+
+    static int iterative_bruteforce(vector<int>& nums)
+    {
         // basically bruteforce iteratively
 
         int res = 0;
