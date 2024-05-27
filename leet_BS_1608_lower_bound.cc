@@ -4,9 +4,26 @@ public:
     {
         vector<int(*)(vector<int>&)> Solutions {
             // Bruteforce_custom_lower_bound,
-            Bruteforce_std_lower_bound,
+            // Bruteforce_std_lower_bound,
+            Without_lower_bound,
         };
         return Solutions[0](nums);
+    }
+
+    static int Without_lower_bound(vector<int>& nums)
+    {
+        sort(begin(nums), end(nums));
+        int N = nums.size();
+        int index = 0;
+        while (++index < N)
+        {
+            int x = N - index;
+            if (nums[x - 1] < index && nums[x] >= index)
+                return index;
+        }
+        if (index <= nums[0])
+            return index;
+        return -1;
     }
 
     static int Bruteforce_std_lower_bound(vector<int>& nums)
