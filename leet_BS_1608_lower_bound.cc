@@ -14,15 +14,18 @@ public:
     {
         sort(begin(nums), end(nums));
         int N = nums.size();
-        int index = 0;
-        while (++index < N)
+        int x = 0;
+        while (++x < N)
         {
-            int x = N - index;
-            if (nums[x - 1] < index && nums[x] >= index)
-                return index;
+            int index = N - x;
+            if (nums[index - 1] < x && nums[index] >= x)
+                return x;
         }
-        if (index <= nums[0])
-            return index;
+        if (x <= nums[0])
+        {
+            assert(x == N);
+            return N;
+        }
         return -1;
     }
 
@@ -48,7 +51,7 @@ public:
         while (++curr < N + 1)
         {
             int l = 0, r = N;
-            //  find bisect_left / lower_bound
+            // find bisect_left . lower_bound
             while (l < r)
             {
                 int mid = (r - l) / 2 + l;
