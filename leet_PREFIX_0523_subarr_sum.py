@@ -1,21 +1,18 @@
-class Solution {
-public:
-    bool checkSubarraySum(vector<int>& nums, int k)
-    {
-        set<int>    s;
-        int sum = 0, mod = 0;
+class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
 
-        for (int n: nums)
-        {
-            sum += n;
-            int temp = sum % k;
+        # insight : IIF a multiple of k is added to prev sum,
+        # that we seen prev mod again
 
-            if (s.find(temp) != s.end())
-                return true;
-            s.insert(mod);
-            mod = temp;
-            
-        }
-        return false;
-    }
-};
+        seen = set()
+        running = 0
+        prev_mod = 0
+        for n in nums:
+            running += n
+            curr_mod = running % k
+            # print((running, running%k, seen) if seen else'empty')
+            if curr_mod in seen:
+                return True
+            seen.add(prev_mod) # <--- delay adding so that sub len > 1 
+            prev_mod = curr_mod
+        return False
