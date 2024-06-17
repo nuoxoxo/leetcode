@@ -2,8 +2,19 @@ class Solution:
     def judgeSquareSum(self, c: int) -> bool:
         return [
             # Initial_soln,
-            # Binary_search,
+            Using_set,
         ][0](c)
+
+def Using_set(c : int) -> bool:
+    seen = set()
+    for n in range(0, c + 1):
+        sq = n * n
+        seen.add(sq) # 
+        if sq > c:
+            break
+        if c - sq in seen:
+            return True
+    return False
 
 def Initial_soln(c : int) -> bool:
     # two pointers
@@ -21,6 +32,7 @@ def Initial_soln(c : int) -> bool:
 """
 5
 3
+2
 8
 9
 10000000
