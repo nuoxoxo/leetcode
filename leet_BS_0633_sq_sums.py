@@ -2,10 +2,10 @@ class Solution:
     def judgeSquareSum(self, c: int) -> bool:
         return [
             # Initial_soln,
-            Using_set,
+            Keep_complements_in_Set,
         ][0](c)
 
-def Using_set(c : int) -> bool:
+def Keep_complements_in_Set(c : int) -> bool:
     seen = set()
     for n in range(0, c + 1):
         sq = n * n
