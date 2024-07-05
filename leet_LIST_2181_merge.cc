@@ -8,32 +8,29 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
- 
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head)
     {
-        ListNode    *fast, *slow;
-        int     temp = 0;
-
-        fast = head->next;
-        slow = head;
-        while (fast)
+        ListNode * L = head;
+        assert (head->next != nullptr);
+        ListNode * R = head->next;
+        int running = 0;
+        while (R != nullptr)
         {
-            if (fast->val == 0)
+            if (R->val == 0)
             {
-                slow = slow->next;
-                slow->val = temp;
-                temp = 0;
+                L = L->next;
+                L->val = running;
+                running = 0;
             }
             else
             {
-                temp += fast->val;
+                running += R->val;
             }
-            fast = fast->next;
+            R = R->next;
         }
-        slow->next = 0;
+        L->next = nullptr;
         return head->next;
-        //  Beginning of the linked list have Node.val == 0
     }
 };
