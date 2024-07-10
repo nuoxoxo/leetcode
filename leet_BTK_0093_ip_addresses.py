@@ -1,5 +1,7 @@
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
+        if len(s) > 12:
+            return []
         res = []
         N = len(s)
         def make (i: int, fields: List[str]) -> None:
@@ -8,6 +10,7 @@ class Solution:
                 if i == N:
                     res.append('.'.join(fields))
                 return
+            # try placing a '.' after the next 1, 2 or 3 digits
             for pos in [1,2,3]: # 1.~ or 35.~ or 225.~
                 if i + pos > N:
                     break
