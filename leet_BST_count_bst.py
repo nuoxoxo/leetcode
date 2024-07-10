@@ -2,7 +2,8 @@ class Solution:
     def numTrees(self, n: int) -> int:
         return [
             # DP,
-            Nth_Catalan_number_divide_and_conquer,
+            # Nth_Catalan_number_divide_and_conquer,
+            Nth_Catalan_lfu_cache, # same runtime
         ][0](n)
 
 def Nth_Catalan_number_divide_and_conquer(n:int) -> int:
@@ -37,3 +38,14 @@ def DP(n: int) -> int:
             temp = dp[left] * dp[right - left - 1]
             dp[right] += temp
     return dp[n]
+
+def Nth_Catalan_lfu_cache(n:int) -> int:
+    @lru_cache(maxsize=None)
+    def catalan(N) -> int:
+        if N < 2: return 1
+        res = 0
+        for left in range(N):
+            res += catalan(left) * catalan(N - left - 1)
+        return res
+    return catalan(n)
+
