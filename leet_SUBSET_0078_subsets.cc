@@ -3,19 +3,18 @@ public:
     vector<vector<int>> subsets(vector<int>& nums)
     {
         vector<vector<vector<int>>(*)(vector<int> &)> solutions {
-            // iterative_bruteforce,
-            backtracking,
+            bruteforce,
+            // backtrack,
         };
         return solutions[0](nums);
-    }
 
-
-    static vector<vector<int>> backtracking(vector<int>& nums)
+    static vector<vector<int>> backtrack(vector<int>& nums)
     {
         int N = nums.size();
         vector<vector<int>> res;
 
-        std::function<void(int, vector<int>)> Backtrack = [&](int i, vector<int> curr) {
+        std::function<void(int, vector<int>)> Backtrack = [&](int i, vector<int> curr)
+        {
             if (i == N)
             {
                 res.push_back(curr);
@@ -31,10 +30,12 @@ public:
     }
 
 
-    static vector<vector<int>> iterative_bruteforce(vector<int>& nums)
+    static vector<vector<int>> bruteforce(vector<int>& nums)
     {
         int i = -1;
-        vector<vector<int>> res = {{}};
+        vector<vector<int>> res;
+        res.push_back( vector<int>{} );
+        // vector<vector<int>> res = {{}};
         for (int n: nums)
         {
             int S = res.size();
