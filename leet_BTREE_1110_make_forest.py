@@ -7,8 +7,8 @@
 class Solution:
     def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
         return [
-            # DFS_make_tree,
-            DFS_del_node,
+            DFS_make_tree,
+            # DFS_del_node,
         ][0](root, to_delete)
         
 def DFS_make_tree(root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
@@ -16,13 +16,13 @@ def DFS_make_tree(root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNo
     def FillForest (node: Optional[TreeNode], hasParent: bool) -> None:
         if not node:
             return
-        new_parent = node
+        validNewParent = True
         if node.val in to_delete:
-            new_parent = None
-        if new_parent and not hasParent:
-            res.append(new_parent)
-        FillForest(node.left, not not new_parent)
-        FillForest(node.right, not not new_parent)
+            validNewParent = False
+        if validNewParent and not hasParent:
+            res.append(node)
+        FillForest(node.left, validNewParent)
+        FillForest(node.right, validNewParent)
         if node.left and node.left.val in to_delete:
             node.left = None
         if node.right and node.right.val in to_delete:
@@ -40,8 +40,8 @@ def DFS_del_node(root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNod
             new_parent = None
         if new_parent and not hasParent:
             res.append(new_parent)
-        node.left = DFS(node.left, not not new_parent)
-        node.right = DFS(node.right, not not new_parent)
+        node.left = DFS(node.left, new_parent != None)
+        node.right = DFS(node.right, new_parent != None)
         return new_parent
     DFS(root, False)
     return res
