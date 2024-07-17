@@ -33,14 +33,12 @@ func delNodesMakeForest(root *TreeNode, to_delete []int) []*TreeNode {
         if node == nil {
             return
         }
-        new_parent := node
         validParent := true
         if contains(node.Val, to_delete) {
-            new_parent = nil
             validParent = false
         }
-        if new_parent != nil && !hasParent {
-            res = append(res, new_parent)
+        if validParent && ! hasParent {
+            res = append(res, node)
         }
         DFS(node.Left, validParent)
         DFS(node.Right, validParent)
