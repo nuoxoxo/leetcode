@@ -34,7 +34,7 @@ class Solution:
             cached[node] = True
             caching[node] = counter
             return counter
-        print(dfs(root))
+        #print(dfs(root))
         return res
                 
 
