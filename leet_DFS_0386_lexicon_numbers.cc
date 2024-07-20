@@ -49,11 +49,7 @@ public:
 
         int curr = 0;
         while (++curr < N)
-        {
-            if (curr > N)
-                break ;
             dfs(curr);
-        }
         return res;
     }
 
