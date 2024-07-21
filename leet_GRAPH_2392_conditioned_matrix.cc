@@ -47,10 +47,10 @@ public:
             //  indegree/ number of incoming edges
             for (auto p : conditions)
             {
-                int before = p[0] - 1, after = p[1] - 1;
-                goingto[ before ].push_back( after );
-                indegree[before] = indegree[before] ? indegree[before] : 0;
-                indegree[after] += 1;
+                int src = p[0] - 1, des = p[1] - 1;
+                goingto[ src ].push_back( des );
+                indegree[src] = indegree[src] ? indegree[src] : 0;
+                indegree[des] += 1;
             }
 
             vector<int> ordering;
@@ -153,10 +153,10 @@ public:
             //  indegree/ number of incoming edges
             for (auto p : conditions)
             {
-                int before = p[0] - 1, after = p[1] - 1;
-                goingto[ before ].push_back( after );
-                indegree[before] = indegree[before] ? indegree[before] : 0;
-                indegree[after] += 1;
+                int src = p[0] - 1, des = p[1] - 1;
+                goingto[ src ].push_back( des );
+                indegree[src] = indegree[src] ? indegree[src] : 0;
+                indegree[des] += 1;
             }
 
             vector<int> ordering;
