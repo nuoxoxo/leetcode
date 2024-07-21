@@ -49,7 +49,6 @@ public:
             {
                 int src = p[0] - 1, des = p[1] - 1;
                 goingto[ src ].push_back( des );
-                indegree[src] = indegree[src] ? indegree[src] : 0;
                 indegree[des] += 1;
             }
 
@@ -155,7 +154,6 @@ public:
             {
                 int src = p[0] - 1, des = p[1] - 1;
                 goingto[ src ].push_back( des );
-                indegree[src] = indegree[src] ? indegree[src] : 0;
                 indegree[des] += 1;
             }
 
