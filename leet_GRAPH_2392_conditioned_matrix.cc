@@ -39,7 +39,7 @@ public:
         std::function<vector<int>/*unordered_map<int, int>*/(vector<vector<int>>/*&*/)> TopoSort;
         TopoSort = [&](vector<vector<int>> /*&*/ conditions)
         {
-            unordered_map<int, vector<int>> prev;
+            unordered_map<int, vector<int>> goingto;
             vector<int> indegree(k, 0);
 
             // Toposort 1/
@@ -48,7 +48,7 @@ public:
             for (auto p : conditions)
             {
                 int before = p[0] - 1, after = p[1] - 1;
-                prev[ before ].push_back( after );
+                goingto[ before ].push_back( after );
                 indegree[before] = indegree[before] ? indegree[before] : 0;
                 indegree[after] += 1;
             }
@@ -73,7 +73,7 @@ public:
             {
                 int curr = Q.front();
                 Q.pop_front();
-                for (int _next : prev[ curr ]) // decrease indegree by 1
+                for (int _next : goingto[ curr ]) // decrease indegree by 1
                 {
                     indegree[_next]--;
                     if (indegree[_next] == 0) // add U to Q once indegree == 0
@@ -145,7 +145,7 @@ public:
         std::function<unordered_map<int, int>(vector<vector<int>>/*&*/)> TopoSort;
         TopoSort = [&](vector<vector<int>> /*&*/ conditions)
         {
-            unordered_map<int, vector<int>> prev;
+            unordered_map<int, vector<int>> goingto;
             vector<int> indegree(k, 0);
 
             // Toposort 1/
@@ -154,7 +154,7 @@ public:
             for (auto p : conditions)
             {
                 int before = p[0] - 1, after = p[1] - 1;
-                prev[ before ].push_back( after );
+                goingto[ before ].push_back( after );
                 indegree[before] = indegree[before] ? indegree[before] : 0;
                 indegree[after] += 1;
             }
@@ -179,7 +179,7 @@ public:
             {
                 int curr = Q.front();
                 Q.pop_front();
-                for (int _next : prev[ curr ]) // decrease indegree by 1
+                for (int _next : goingto[ curr ]) // decrease indegree by 1
                 {
                     indegree[_next]--;
                     if (indegree[_next] == 0) // add U to Q once indegree == 0
