@@ -11,12 +11,27 @@ public:
 
     static vector<int> MergeSort(vector<int> & nums)
     {
+        // merge sort
+        //  [5,2,3,1]
+        //  [5,2]   [3,1]
+        //  [5] [2] [3] [1] <--- single elements/ end of Dividing
+        //  [5] [2] [3] [1] <--- sorting happens/ while Merging
+        //       ^
+        //               ^  <--- [2,5][1,3]
+        //  [2,5]   [1,3]   <--- sorting/merging cont.
+        //           ^      <--- [1]
+        //   ^              <--- [1,2]
+        //             ^    <--- [1,2,3]
+        //  [1,2,3,5]
+
         function<vector<int>(int, int)> mergesort = [&](int L, int R)
         {
+            
             if (L > R)
                 return vector<int>{};
+            int mid = nums[L];
             if (L == R)
-                return vector<int>{ nums[L] };
+                return vector<int>{mid};
             int M = (R - L) / 2 + L;
             vector<int> Lnums = mergesort(L, M);
             vector<int> Rnums = mergesort(M + 1, R);
