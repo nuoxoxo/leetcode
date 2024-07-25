@@ -20,37 +20,22 @@ public:
             int M = (R - L) / 2 + L;
             vector<int> Lnums = mergesort(L, M);
             vector<int> Rnums = mergesort(M + 1, R);
-            vector<int> res;
             int l = 0;
             int r = 0;
             int NL = Lnums.size();
             int NR = Rnums.size();
+            vector<int> res(NL + NR, 0);
+            int curr = 0;
             while (l < NL && r < NR)
-            {
-                if (Lnums[l] < Rnums[r])
-                {
-                    res.push_back(Lnums[l]);
-                    l++;
-                }
-                else
-                {
-                    res.push_back(Rnums[r]);
-                    r++;
-                }
-            }
+                Lnums[l] < Rnums[r] ? res[curr++] = Lnums[l++] : res[curr++] = Rnums[r++];
             while (l < NL)
-            {
-                res.push_back(Lnums[l++]);
-                // l++;
-            }
+                res[curr++] = Lnums[l++];
             while (r < NR)
-            {
-                res.push_back(Rnums[r++]);
-            }
+                res[curr++] = Rnums[r++];
             return res;
         };
-        int N = nums.size();
-        return mergesort(0, N - 1);
+
+        return mergesort(0, nums.size() - 1);
     }
 
     static vector<int> MergeSort_backinserter(vector<int> & nums)
