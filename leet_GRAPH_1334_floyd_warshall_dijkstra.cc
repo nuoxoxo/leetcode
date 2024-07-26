@@ -102,7 +102,6 @@ public:
         }
         // Floyd-Warshall DP idea:
         //  exhaust all possible intermediate-cities in range(N)
-        //  incl. non-existant ones 
         int d = -1;
         while (++d < n)
         {
