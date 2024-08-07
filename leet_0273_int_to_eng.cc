@@ -14,39 +14,35 @@ public:
             "Twenty", "Thirty", "Forty", "Fifty",
             "Sixty", "Seventy", "Eighty", "Ninety"
         };
-        map<int, string> E;
-        E[100] = "Hundred";
-        E[1000] = "Thousand";
-        E[1000000] = "Million";
-        E[1000000000] = "Billion";
-        std::function<string(int)> go = [&](int n){
+
+        std::function<string(int)> go = [&](int N){
             string res;
-            if (n > 99)
+            if (N > 99)
             {
-                int hun = n / 100;
+                int hun = N / 100;
                 res += U[hun] + " Hundred";
-                n %= 100;
-                if (!n)
+                N %= 100;
+                if (!N)
                     return res;
             }
-            if (n < 20)
+            if (N < 20)
             {
                 if (res != "")
                     res += " ";
-                res += U[n];
+                res += U[N];
                 return res;
             }
             // >= 30
-            int num = n / 10;
+            int n = N / 10;
             if (res != "")
                 res += " ";
-            res += T[num - 2];
-            n %= 10;
-            if (n)
+            res += T[n - 2];
+            N %= 10;
+            if (N)
             {
                 if (res != "")
                     res += " ";
-                res += U[n];
+                res += U[N];
             }
             return res;
         };
