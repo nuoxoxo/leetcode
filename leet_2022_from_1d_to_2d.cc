@@ -2,20 +2,17 @@ class Solution {
 public:
     vector<vector<int>> construct2DArray(vector<int>& original, int m, int n)
     {
-        vector<vector<int>>	r(m, vector<int>(n, 0));
-        int len = original.size();
-        int i, x, y;
-        
-        if (len != m * n)
+        int N = original.size();
+        if (m * n ^ N)
             return {};
-        i = 0;
-        x = -1;
-        while (++x < m)
+        vector<vector<int>> res(m, vector<int>(n, 0));
+        int i = -1, r = -1, c;
+        while (++r < m)
         {
-            y = -1;
-            while (++y < n)
-                r[x][y] = original[i++];
+            c = -1;
+            while (++c < n)
+                res[r][c] = original[++i];
         }
-        return r;
+        return res;
     }
 };
