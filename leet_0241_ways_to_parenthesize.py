@@ -31,17 +31,13 @@ def Using_groupby_and_catalan_number(expression: str) -> List[int]:
             assert tokens[mid] in '+-*'
             left_res = f(L, mid - 1)
             right_res = f(mid + 1, R)
-            if tokens[mid] == '+':
-                for l in left_res:
-                    for r in right_res:
+            for l in left_res:
+                for r in right_res:
+                    if tokens[mid] == '+':
                         res.append(l + r)
-            elif tokens[mid] == '-':
-                for l in left_res:
-                    for r in right_res:
+                    elif tokens[mid] == '-':
                         res.append(l - r)
-            elif tokens[mid] == '*':
-                for l in left_res:
-                    for r in right_res:
+                    elif tokens[mid] == '*':
                         res.append(l * r)
         return res
     return f(0, N - 1)
