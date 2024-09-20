@@ -15,7 +15,7 @@ def Bruteforce(s: str) -> str:
     cbazzzyyyxxx  xxxyyyzzzabc
              ^^^  ^^^
              i
-    # here we an i is found so that rev[i:] == src[:N - i]
+    # here an i is found so that rev[i:] == src[:N - i]
     # so that the result should be 
     # cbazzzyyy - rev[:i]
     # + 
