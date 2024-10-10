@@ -1,21 +1,23 @@
 func maxWidthRamp(nums []int) int {
-    res := 0
-    var arr []int
-    for i := 0; i < len(nums); i++ {
-        if len(arr) == 0 || nums[i] < nums[arr[len(arr) - 1]] {
-            arr = append(arr, i)
+    Q := []int{}
+    N := len(nums)
+    i := 0
+    for i < N {
+        if len(Q) == 0 || nums[Q[ len(Q) - 1 ]] > nums[i] {
+            Q = append(Q, i)
         }
+        i++
     }
-    for i := len(nums) - 1; i > -1 ; i-- {
-        for len(arr) > 0 && nums[i] >= nums[arr[len(arr) - 1]] {
-            // res = i - arr[len(arr) - 1] > res ? i - arr[len(arr) - 1] : res
-            // no ternary in Go
-            diff := i - arr[len(arr) - 1]
-            if res < diff {
-                res = diff
+    i = N - 1
+    res := 0
+    for i > -1 {
+        for len(Q) > 0 && nums[Q[ len(Q) - 1 ]] <= nums[i] {
+            if res < i - Q[len(Q) - 1] {
+                res = i - Q[len(Q) - 1]
             }
-            arr = arr[:len(arr) - 1]
+            Q = Q[:len(Q) - 1]
         }
+        i--
     }
     return res
 }
