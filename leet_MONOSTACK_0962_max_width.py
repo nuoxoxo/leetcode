@@ -1,11 +1,13 @@
 class Solution:
     def maxWidthRamp(self, nums: List[int]) -> int:
-        D = collections.deque()
-        r = 0
-        for i in range(len(nums)):
-            if not D or nums[i] < nums[D[0]]:
-                D.appendleft(i)
+        Q = collections.deque()
+        # idea/ - we need a monotonic decreasing stack
+        for i, n in enumerate(nums):
+            if not Q or n < nums[Q[0]]:
+                Q.appendleft(i)
+        res = 0
         for i in range(len(nums) - 1, -1, -1):
-            while D and nums[i] >= nums[D[0]]:
-                r = max(i - D.popleft(), r)
-        return r
+            while Q and nums[Q[0]] <= nums[i]:
+                res = max(res, i - Q[0])
+                Q.popleft()
+        return res
