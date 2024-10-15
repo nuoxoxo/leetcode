@@ -3,31 +3,26 @@ class Solution:
         # cases
         #   "11000111"
         #   "01010001"
-        res = 0
-        tmp = 0
-        for c in s:
-            if c == '1':
-                tmp += 1
-            else:
-                res += tmp
-        return res 
-        # initial soln
-        """
-        N = len(s)
-        L, R = -1, -1
-        for i in range(N - 1, -1, -1):
-            if i > -1 and s[i] == '1': continue
-            if i == 0: return 0
-            if s[i] == '0':
-                R = i
-                break
-        for i in range(N):
-            if i < N and s[i] == '0': continue
-            if i == N: return 0
-            if s[i] == '1':
-                L = i
-                break
-        sub = s[L : R + 1]
-        print(L, R, sub)
-        return sub.count('0') * sub.count('1')
-        """
+        return [
+            # greedy,
+            two_pointers,
+        ][0](s)
+
+def two_pointers(s: str) -> int:
+    res, L, R = 0, 0, 0
+    while R < len(s):
+        if s[R] == '0':
+            res += R - L
+            L += 1
+        R += 1
+    return res
+
+def greedy(s: str) -> int:
+    res = 0
+    tmp = 0
+    for c in s:
+        if c == '1':
+            tmp += 1
+        else:
+            res += tmp
+    return res
