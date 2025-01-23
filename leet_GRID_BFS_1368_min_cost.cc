@@ -22,10 +22,7 @@ public:
                     int tt = cost + dist[r][c];
                     if (dist[rr][cc] > tt){
                         dist[rr][cc] = tt;
-                        if (!cost)
-                            Q.push_front({rr,cc});
-                        else
-                            Q.push_back({rr,cc});
+                        Q.push_back({rr,cc});
                     }
                 } 
             }
