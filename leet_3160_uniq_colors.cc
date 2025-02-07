@@ -3,10 +3,11 @@ public:
     vector<int> queryResults(int limit, vector<vector<int>>& queries)
     {
         unordered_map<int,int> D, colors;
-        int curr = 0;
-        vector<int> res;
-        for (auto q: queries){
-            int x = q[0], y = q[1];
+        int curr = 0, N = queries.size();
+        vector<int> res(N, 0);
+        int i = -1;
+        while (++i < N) {
+            int x = queries[i][0], y = queries[i][1];
             int oc = D[x];
             if (colors[oc] > 0) {
                 colors[oc]--;
@@ -15,7 +16,7 @@ public:
             }
             if (!colors[y])
                 curr++;
-            res.push_back(curr);
+            res[i] = curr;
             colors[y]++;
             D[x] = y;
         }
