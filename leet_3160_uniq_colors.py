@@ -5,16 +5,17 @@ class Solution:
         colors = collections.defaultdict(int)
         # D = [0] * (limit + 1)
         # colors = {}
-        zero = limit + 1
+        curr = 0
         res = []
         for x,y in queries:
-            if colors[D[x]] != 0:
-                colors[D[x]] -= 1
-                if colors[D[x]] == 0:
-                    zero += 1
+            oc = D[x]
+            if colors[oc] > 0:
+                colors[oc] -= 1
+                if colors[oc] == 0:
+                    curr -= 1
             if colors[y] == 0:
-                zero -= 1
-            res.append(limit + 1 - zero)
+                curr += 1
+            res.append(curr)
             colors[y] += 1
             D[x] = y
         return res
