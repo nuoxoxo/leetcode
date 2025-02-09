@@ -1,25 +1,22 @@
 class NumberContainers:
 
     def __init__(self):
-        self.indices = collections.defaultdict(list) # n:(0,1,3,4,42,...)
+        self.indices = collections.defaultdict(sortedcontainers.SortedList) # n:(0,1,3,4,42,...)
         self.idx2num = {} # i:n, j:n2, ...
 
     def change(self, index: int, number: int) -> None:
-
         # index not taken --> set idx to num, add idx to num's indices
         # already taken ----> del idx from num's indices, set new idx
-
         if index in self.idx2num:
+            # print(index,number,self.indices,self.idx2num)
             self.indices[self.idx2num[index]].remove(index)
-
         self.idx2num[index] = number
-        # self.indices[number].append(index) ### TLE
-        bisect.insort_left(self.indices[number], index)
+        self.indices[number].add(index)
 
     def find(self, number: int) -> int:
-        if number in self.indices and len(self.indices[number]) != 0:
-            return self.indices[number][0]
-        return -1
+        if not self.indices[number]:
+            return -1
+        return self.indices[number][0]
 
 
 # Your NumberContainers object will be instantiated and called as such:
