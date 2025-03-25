@@ -1,36 +1,37 @@
-func checkValidCuts(n int, rectangles [][]int) bool {
-    Solutions := []func([][]int) bool {
-        Twopass,
-    }
-    return Solutions[0](rectangles) // discarded n
-}
-
-func Twopass(rectangles [][]int) bool {
-
-    hori,vert := [][]int{}, [][]int{}
-    for _,q := range rectangles {
-        a,b,c,d := q[0],q[1],q[2],q[3]
-        hori = append(hori,[]int{a,c})
-        vert = append(vert,[]int{b,d})
+class Solution {
+public:
+    // #define vector<int> vi
+    #define vi vector<int>
+    bool checkValidCuts(int n, vector<vector<int>>& rectangles)
+    {
+        vector<bool(*)(vector<vi> &)> Solutions {
+            Twopass,
+        };
+        return Solutions[0](rectangles);
     }
 
-    var f func(rec[][]int)bool
-    f = func(rec[][]int)bool {
-        sort.Slice(rec, func(l,r int) bool {
-            if rec[l][0] == rec[r][0] { return rec[l][1] < rec[r][1] }
-            return rec[l][0] < rec[r][0]
-        })
-        ok := 0
-        R := rec[0][1]
-        for _,lr := range rec {
-            l,r := lr[0],lr[1]
-            if R <= l {
-                ok += 1
-                if ok > 1 { return true }
-            }
-            if R < r { R = r }
+    static bool Twopass(vector<vi>&rectangles)
+    {
+        vector<vi> h, v;
+        for (auto q : rectangles) {
+            h.push_back(vi{q[0],q[2]});
+            v.push_back(vi{q[1],q[3]});
         }
-        return false
+        std::function<bool(vector<vi> &)> f = [&](vector<vi> & v) {
+            sort(v.begin(), v.end(), [](const vi&l, const vi&r){
+                return l[0] == r[0] ? l[1] < r[1] : l[0] < r[0];
+            });
+            int R = v[0][1];
+            int ok = 0;
+            for (auto lr : v) {
+                int l = lr[0], r = lr[1];
+                if (R <= l) {
+                    if (++ok > 1) return true;
+                }
+                R = max(R,r);
+            }
+            return false;
+        };
+        return f(v) || f(h);
     }
-    return f(hori) || f(vert)
-}
+};
