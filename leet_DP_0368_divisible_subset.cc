@@ -1,45 +1,47 @@
 class Solution {
 public:
     vector<int> largestDivisibleSubset(vector<int>& nums) {
+
         vector<vector<int>(*)(vector<int>&)> solutions {
             DP,
         };
         return solutions[0](nums);
     }
 
-    static vector<int> DP (vector<int> & nums) {
-        int len = (int) nums.size();
-        if (!len)
+    static vector<int> DP (vector<int> & nums)
+    {
+
+        int len = nums.size();
+        if (len == 0)
             return {};
-        vector<vector<int>> dp(len, vector<int>());
+
+        vector<vector<int>> DP(len, vector<int>());
         sort(nums.begin(), nums.end());
         int i = -1;
         while (++i < len)
-            dp[i].push_back(nums[i]);
+            DP[i].push_back(nums[i]);
+
         i = -1;
-        while (++i < len)
-        {
+        while (++i < len) {
             int j = -1;
-            while (++j < i)
-            {
-                if ( nums[i] % nums[j] == 0 && dp[i].size() - 1 < dp[j].size())
-                {
-                    dp[i] = dp[j];
-                    dp[i].push_back(nums[i]);
+            while (++j < i) {
+                if ( nums[i] % nums[j] == 0 && DP[i].size() - 1 < DP[j].size()) {
+                    DP[i] = DP[j];
+                    DP[i].push_back(nums[i]);
                 }
             }
         }
+
+        int max = -1e9;
+        int pos = -1;
         i = -1;
-        int max = -1e9, pos = -1;
-        while (++i < len)
-        {
-            int N = dp[i].size();
-            if (max < N)
-            {
+        while (++i < len) {
+            int N = DP[i].size();
+            if (max < N) {
                 pos = i;
                 max = N;
             }
         }
-        return dp[pos];
+        return DP[pos];
     }
 };
