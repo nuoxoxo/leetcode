@@ -1,8 +1,8 @@
 class Solution:
     def countCompleteSubarrays(self, nums: List[int]) -> int:
         return [
-            direct_solution,
-            # using_dict,
+            # direct_solution,
+            using_dict,
         ][0](nums)
 
 def direct_solution(nums: List[int]) -> int:
@@ -23,15 +23,20 @@ def using_dict(nums: List[int]) -> int:
     UN = len(set(nums))
     D = collections.defaultdict(int)
     res = 0
-    while R < N:
+    while L < N:
         # print('L/R -',L,R)
-        D[nums[R]] += 1
+        D[nums[L]] += 1
         while len(D) == UN:
-            D[nums[L]] -= 1
-            if D[nums[L]] == 0:
-                D.pop(nums[L])
-            L += 1
-            res += N - R
-        R += 1
+            D[nums[R]] -= 1
+            if D[nums[R]] == 0:
+                D.pop(nums[R])
+            R += 1
+
+            # we count every subarr that has:
+            #   L as left-bound
+            #   R:N+1 as right-bound
+            res += N - L
+
+        L += 1
     return res
 
