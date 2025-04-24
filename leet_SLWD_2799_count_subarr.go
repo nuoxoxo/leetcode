@@ -40,6 +40,9 @@ func using_counter(nums[]int)int{
             }
             R++
             res += N - L
+            // we count every subarr that has:
+            //      L as left-bound
+            //      R:N+1 as right-bound
         }
         L++
     }
