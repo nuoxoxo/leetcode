@@ -11,8 +11,10 @@ func using_prefix(nums []int, modulo int, k int) int64 {
     pref := 0
     D := make(map[int]int64)
     D[0] = 1
-    for _, n := range nums {
-        if n % modulo == k {
+    for R,_ := range nums {
+        // we count good subarrs that
+        // end at this _ index (ie. idx of n)
+        if nums[R] % modulo == k {
             pref++
         }
         remain := (pref - k) % modulo
